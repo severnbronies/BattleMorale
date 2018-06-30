@@ -1,14 +1,18 @@
 import pygame
 import sys
+import yaml
+import os.path
 from game import Game
-from constants import BASE_RESOLUTION, SCALE_FACTOR, WINDOW_SIZE
+from constants import ASSET_DIRECTORY, BASE_RESOLUTION, SCALE_FACTOR, WINDOW_SIZE
 
 def main():
 
     pygame.init()
     screen = pygame.display.set_mode(WINDOW_SIZE)
     pygame.display.set_caption("First Pygame Application")
-    game_instance = Game(screen, "level0.yaml")
+
+    config = yaml.load(open(os.path.join(ASSET_DIRECTORY, "global.yaml")))
+    game_instance = Game(screen, config)
 
     clock = pygame.time.Clock()
 
