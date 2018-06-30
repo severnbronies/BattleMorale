@@ -5,11 +5,7 @@ from constants import ASSET_DIRECTORY,SCALE_FACTOR
 import os.path
 import math
 import pygame
-<<<<<<< HEAD
-
-=======
 from phone import Phone, BubbleConfig
->>>>>>> wire phone into game
 
 class MoveNpcAction:
     def __init__(self, start, dest, speed):
@@ -60,21 +56,18 @@ class Game:
         self.mood_high = config["mood-thresholds"]["max"]
         self.mood_low = config["mood-thresholds"]["min"]
 
-<<<<<<< HEAD
-=======
         self.font = pygame.font.Font(os.path.join(ASSET_DIRECTORY, config["font"]["file"]),config["font"]["size"]*SCALE_FACTOR)
 
         self.phone = Phone(
             self.font,
             self.sprite_sheet.get_sprite("phone"),
-            17*SCALE_FACTOR,
+            10*SCALE_FACTOR,
             BubbleConfig.from_dict(config["pc-bubbles"],self.sprite_sheet),
             BubbleConfig.from_dict(config["npc-bubbles"],self.sprite_sheet),
             57*SCALE_FACTOR
         )
 
 
->>>>>>> wire phone into game
     def add_npc_message(self, text):
         self.phone.add_npc_message(text)
         self.level.post_update(None)
