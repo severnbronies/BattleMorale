@@ -31,6 +31,9 @@ npc_head_angry:
 npc_head_nervous:
   top: 32
   left: 64
+npc_head_smile:
+  top: 48
+  left: 0
 
 phone:
   top: 0

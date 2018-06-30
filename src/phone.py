@@ -77,23 +77,23 @@ class Message:
 
 class Phone:
     def __init__(self,font,phone_sprite,bubbles_bottom,pc_bubble_config,npc_bubble_config,max_text_width):
-        self.PcMessage = Message.factory("PcMessage"
-            font = font
-            sprites = pc_bubble_config.sprites
-            margin_left = pc_bubble_config.margin_left
-            margin_right = pc_bubble_config.margin_right
-            margin_top = pc_bubble_config.margin_top
-            margin_bottom = pc_bubble_config.margin_bottom
+        self.PcMessage = Message.factory("PcMessage",
+            font = font,
+            sprites = pc_bubble_config.sprites,
+            margin_left = pc_bubble_config.margin_left,
+            margin_right = pc_bubble_config.margin_right,
+            margin_top = pc_bubble_config.margin_top,
+            margin_bottom = pc_bubble_config.margin_bottom,
             max_text_width = max_text_width
         )
 
-        self.NpcMessage = Message.factory("NpcMessage"
-            font = font
-            sprites = npc_bubble_config.sprites
-            margin_left = npc_bubble_config.margin_left
-            margin_right = npc_bubble_config.margin_right
-            margin_top = npc_bubble_config.margin_top
-            margin_bottom = npc_bubble_config.margin_bottom
+        self.NpcMessage = Message.factory("NpcMessage",
+            font = font,
+            sprites = npc_bubble_config.sprites,
+            margin_left = npc_bubble_config.margin_left,
+            margin_right = npc_bubble_config.margin_right,
+            margin_top = npc_bubble_config.margin_top,
+            margin_bottom = npc_bubble_config.margin_bottom,
             max_text_width = max_text_width
         )
 
