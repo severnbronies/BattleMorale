@@ -34,9 +34,14 @@ npc_head_nervous:
 npc_head_smile:
   top: 48
   left: 0
-
 phone:
   top: 0
   left: 96
-  width: 48
-  height: 96
+  width: 80
+  height: 160
+npc-bubble:
+  left: 0
+  top: 16
+pc-bubble:
+  left: 48
+  top: 16

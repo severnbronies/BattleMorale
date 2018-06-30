@@ -2,3 +2,21 @@ start-level: "example.yaml"
 mood-thresholds:
   min: -10
   max: 10
+
+font:
+  file: "Greypixels 2.ttf"
+  size: 4
+
+pc-bubbles: 
+  margin_left: 3
+  margin_top: 2
+  margin_bottom: 2
+  margin_right: 3
+  sprites: "pc-bubble"
+
+npc-bubbles:
+  margin_left: 3
+  margin_top: 2
+  margin_bottom: 2
+  margin_right: 3
+  sprites: "npc-bubble"
