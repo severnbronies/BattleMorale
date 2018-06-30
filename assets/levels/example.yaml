@@ -1,0 +1,26 @@
+nodes:
+  start:
+    - type: move_npc
+      x: 40
+      y: 50
+      speed: 2
+    - type: add_npc_message
+      text: OwO what's this?
+    - type: add_pc_choices
+    - choices:
+        lie: Nothing...
+        truth: an example yaml file
+  lie:
+    - type: change_npc_mood
+      offset: -5
+    - type: move_npc
+      x: -20
+      y: 50
+      speed: 10
+    - type: change_level
+      name: gameover.yaml
+  truth:
+    - type: change_npc_mood
+      offset: 10
+    - type: change_level
+      name: you_win.yaml
