@@ -1,3 +1,4 @@
 start-level: "level0.yaml"
-win-mood: 10
-lose-mood: -10
+mood-thresholds:
+  min: -10
+  max: 10

@@ -54,8 +54,9 @@ class Game:
         self.background = self.sprite_sheet.get_sprite("")
         self.character = Character((0,0), self.sprite_sheet.get_sprite("npc_head_happier"), self.sprite_sheet.get_sprite("npc_body_idle"))
 
-        self.win_mood = config["win-mood"]
-        self.lose_mood = config["lose-mood"]
+        self.mood_high = config["mood-thresholds"]["max"]
+        self.mood_low = config["mood-thresholds"]["min"]
+
 
     def add_npc_message(self, text):
         self.level.post_update(None)
