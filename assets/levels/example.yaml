@@ -7,7 +7,7 @@ nodes:
     - type: add_npc_message
       text: OwO what's this?
     - type: add_pc_choices
-    - choices:
+      choices:
         lie: Nothing...
         truth: an example yaml file
   lie:
