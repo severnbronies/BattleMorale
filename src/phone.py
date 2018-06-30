@@ -4,6 +4,28 @@ import pygame
 from collections import namedtuple
 
 BubbleSprites = namedtuple("BubbleSprites","top_left, top_right, bottom_left, bottom_right, top, bottom, left, right, center")
+BubbleConfig = namedtuple("BubbleConfig","margin_left, margin_right, margin_top, margin_bottom, sprites")
+def _from_dict(dict,sprite_sheet):
+    mdict = dict.copy()
+    masterSprite = sprite_sheet.get_sprite(mdict["sprites"])
+    width,height = masterSprite.get_size()
+    halfWidth,halfHeight=width//2,height//2
+    
+    mdict["sprites"] = new BubbleSprites(
+        top_left = masterSprite.subsurface((0,0,halfWidth,halfHeight))
+        top_right = masterSprite.suburface((width-halfWidth,0,halfWidth,halfHeight))
+        bottom_left = masterSprite.subsurface((0,height-halfHeight,halfWidth,halfHeight))
+        bottom_right = masterSprite.subsurface((width-halfWidth,height-halfHeight,halfWidth,halfHeight))
+        top = masterSprite.subsurface((halfWidth,0,1,halfHeight))
+        bottom = masterSprite.subsurface((halfWidth,height-halfHeight,1,halfHeight))
+        left = masterSprite.subsurface(0,halfHeight,halfWidth,1)
+        right = masterSprite.subsurface(width-halfWidth,halfHeight,halfWidth,1)
+        center = masterSprite.subsurface((width-halfWidth,height-halfHeight,1,1))
+    )
+
+    return BubbleConfig(**mdict)
+BubbleConfig.from_dict = _from_dict
+
 
 class Message:
     font = None
