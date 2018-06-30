@@ -46,11 +46,13 @@ class Message:
         self.line_space = self.font.size("Tg")[1] + LINE_SPACING
         self.text_height = -LINE_SPACING
         self.text_width = 0
+
+        max_text_width = self.max_bubble_width-self.margin_left-self.margin_right
         while text:
             i = 1
             # determine maximum width of line
             line_width = self.font.size(text[:i])[0]
-            while line_width < self.max_text_width and i < len(text):
+            while line_width < max_text_width and i < len(text):
                 i += 1
                 line_width = self.font.size(text[:i])[0]
             # if we've wrapped the text, then adjust the wrap to the last word      
@@ -114,7 +116,10 @@ class Message:
         return subtype
 
 class Phone:
-    def __init__(self,font,phone_sprite,bubbles_bottom,pc_bubble_config,npc_bubble_config,max_text_width):
+    def __init__(self,font,phone_sprite,bubbles_bottom,pc_bubble_config,npc_bubble_config,bubble_margin):
+
+        max_bubble_width = phone_sprite.get_size()[0]-bubble_margin*2
+
         self.PcMessage = Message.factory("PcMessage",
             font = font,
             sprites = pc_bubble_config.sprites,
@@ -122,8 +127,9 @@ class Phone:
             margin_right = pc_bubble_config.margin_right*SCALE_FACTOR,
             margin_top = pc_bubble_config.margin_top*SCALE_FACTOR,
             margin_bottom = pc_bubble_config.margin_bottom*SCALE_FACTOR,
-            max_text_width = max_text_width,
-            color = (0,0,0)
+            max_bubble_width = max_bubble_width,
+            color = (0,0,0),
+            align = "RIGHT"
         )
 
         self.NpcMessage = Message.factory("NpcMessage",
@@ -140,10 +146,11 @@ class Phone:
 
         self.sprite = phone_sprite
         self.bubbles_bottom = bubbles_bottom
-        self.bubbles_left = 0
+        self.bubble_margin = bubble_margin
 
         self.x = 0
         self.y = 0
+
 
         self.messages = []
         self.options = []
@@ -166,11 +173,18 @@ class Phone:
         if not self.dirty:
             return
         surface.blit(self.sprite,(self.x,self.y))
-        bubble_y = self.sprite.get_size()[1] - self.bubbles_bottom
+        width,height = self.sprite.get_size()
+        bubble_y = height - self.bubbles_bottom
 
         for message in self.all_renderable_messages():
-            height = message.surface.get_size()[1]
-            bubble_y -= height
+            bubble_width, bubble_height = message.surface.get_size()
+            bubble_y -= bubble_height
             if bubble_y < 0:
                 break
-            surface.blit(message.surface,(self.x+self.bubbles_left, self.y+bubble_y)) 
+            if message.align == "RIGHT":
+                bubble_x = width - self.bubble_margin - bubble_width
+            elif message.align == "CENTER":
+                bubble_x = (width - bubble_width)/2
+            else: #default LEFT
+                bubble_x = self.bubble_margin
+            surface.blit(message.surface,(self.x+bubble_x, self.y+bubble_y)) 
