@@ -151,7 +151,7 @@ class Phone:
     def add_npc_message(self, text):
         self.messages.append(self.NpcMessage(text))
 
-    def add_npc_message(self, text):
+    def add_pc_message(self, text):
         self.messages.append(self.PcMessage(text))
 
     def add_pc_choices(self, choices):
