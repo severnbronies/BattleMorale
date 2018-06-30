@@ -2,6 +2,7 @@ LINE_SPACING = -2
 
 import pygame
 from collections import namedtuple
+from constants import SCALE_FACTOR
 
 BubbleSprites = namedtuple("BubbleSprites","top_left, top_right, bottom_left, bottom_right, top, bottom, left, right, center")
 BubbleConfig = namedtuple("BubbleConfig","margin_left, margin_right, margin_top, margin_bottom, sprites")
@@ -116,11 +117,11 @@ class Phone:
         self.PcMessage = Message.factory("PcMessage",
             font = font,
             sprites = pc_bubble_config.sprites,
-            margin_left = pc_bubble_config.margin_left,
-            margin_right = pc_bubble_config.margin_right,
-            margin_top = pc_bubble_config.margin_top,
-            margin_bottom = pc_bubble_config.margin_bottom,
-            max_text_width = max_text_width,
+            margin_left = pc_bubble_config.margin_left*SCALE_FACTOR,
+            margin_right = pc_bubble_config.margin_right*SCALE_FACTOR,
+            margin_top = pc_bubble_config.margin_top*SCALE_FACTOR,
+            margin_bottom = pc_bubble_config.margin_bottom*SCALE_FACTOR,
+            max_text_width = max_text_width*SCALE_FACTOR,
             color = (0,0,0)
         )
 
