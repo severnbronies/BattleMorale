@@ -38,7 +38,7 @@ phone:
   top: 0
   left: 96
   width: 80
-  height: 160
+  height: 176
 npc-bubble:
   left: 0
   top: 16
