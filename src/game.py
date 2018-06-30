@@ -4,7 +4,32 @@ from character import Character
 from spritesheet import SpriteSheet
 from constants import ASSET_DIRECTORY
 import os.path
+import math
 import pygame
+
+
+
+class MoveNpcAction:
+    def __init__(self, start, dest, speed):
+        self.start = start
+        self.dest = dest
+        distance = math.sqrt((start[0]-dest[0])**2 + (start[1]-dest[1])**2)
+        self.duration = distance/speed
+        self.progress = 0.0
+        self.finished = None
+
+    def run(self, game, timestep):
+        self.progress += timestep/1000
+
+        percentage = self.progress/self.duration
+        if percentage >= 1.0:
+            percentage = 1.0
+            self.finished = True
+        x = self.start[0]*(1.0-percentage) + self.dest[0]*(percentage)
+        y = self.start[1]*(1.0-percentage) + self.dest[1]*(percentage)
+        game.character.move((x, y))
+        return self.finished
+
 
 class Game:
     def __init__(self, screen, config):
@@ -29,13 +54,13 @@ class Game:
         pass
 
     def move_npc(self, x, y, speed):
-        pass
+        self.current_action = MoveNpcAction(self.character.position, (x, y), speed)
 
     def show_phone(self, visible):
         pass
 
     def change_level(self, name):
-        pass
+        self.level = Tree(name)
 
     def wait_click(self):
         pass
@@ -51,6 +76,11 @@ class Game:
     def on_update(self, frametime):
         if self.current_action is None:
             self.level.pre_update(self)
+        else:
+            result = self.current_action.run(self, frametime)
+            if result is not None:
+                self.current_action = None
+                self.level.post_update(result)
         
     def on_render(self, screen):
         screen.blit(self.background, (0, 0))

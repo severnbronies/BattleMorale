@@ -24,5 +24,7 @@ class Character:
         return pygame.Rect(self.position, self.head.get_size())
 
     def render(self, surface):
-        surface.blit(self.body, self.position)
-        surface.blit(self.head, self.position)
+        x = int(self.position[0]*SCALE_FACTOR)
+        y = int(self.position[1]*SCALE_FACTOR)
+        surface.blit(self.body, (x, y))
+        surface.blit(self.head, (x, y))

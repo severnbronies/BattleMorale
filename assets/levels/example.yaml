@@ -1,9 +1,9 @@
 nodes:
   start:
     - type: move_npc
-      x: 40
+      x: 100
       y: 50
-      speed: 2
+      speed: 20.0
     - type: add_npc_message
       text: OwO what's this?
     - type: add_pc_choices
