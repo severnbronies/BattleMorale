@@ -1,15 +1,17 @@
 import pygame
 import sys
 from game import Game
+from constants import BASE_RESOLUTION, SCALE_FACTOR, WINDOW_SIZE
 
 def main():
-    game_instance = Game("level0.yaml")
 
     pygame.init()
-    screen = pygame.display.set_mode((1280, 720))
+    screen = pygame.display.set_mode(WINDOW_SIZE)
     pygame.display.set_caption("First Pygame Application")
+    game_instance = Game(screen, "level0.yaml")
 
     clock = pygame.time.Clock()
+
     while True:
         frametime = clock.tick(30)
         
