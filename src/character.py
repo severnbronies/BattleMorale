@@ -5,10 +5,14 @@ class Character:
     def __init__(self, position, head, body):
         self.position = position
         self.old_position = position
-        self.set_sprites(head, body)
+        self.set_head(head)
+        self.set_body(body)
 
-    def set_sprites(self, head, body):
+    def set_head(self, head):
         self.head = head
+        self.dirty = True
+
+    def set_body(self, body):
         self.body = body
         self.dirty = True
 
