@@ -36,6 +36,10 @@ class Message:
     margin_bottom = None
     max_text_width = None
 
+    def __init__(self,text):
+        self.splitText(text)
+        self.surface = self.pre_render()
+
     def splitText(self,text):
         self.lines = []
         self.line_space = self.font.size("Tg")[1] + LINE_SPACING
@@ -60,6 +64,11 @@ class Message:
     def pre_render(self):
         total_width = self.text_width + self.margin_left + self.margin_right
         total_height = self.text_height + self.margin_top + self.margin_bottom
+
+        if total_width < self.bubble_min_width:
+            total_width = self.bubble_min_width
+        if total_height < self.bubble_min_height:
+            total_height = self.bubble_min_height
 
         x1,y1 = self.sprites.top_left.get_size()
         right_width,bottom_height = self.sprites.bottom_right.get_size()
@@ -87,7 +96,7 @@ class Message:
 
         y = self.margin_top
         for line in self.lines:
-            textRender = self.font.render(line,False,(self.margin_left,y),self.color)
+            textRender = self.font.render(line,False,self.color)
             surface.blit(textRender,(self.margin_right,y))
             y += self.line_space
 
@@ -95,7 +104,12 @@ class Message:
     
     @classmethod
     def factory(cls, name, **options):
-        type(name, (cls,), options)
+        subtype = type(name, (cls,), options)
+        w,h = options["sprites"].top_left.get_size()
+
+        subtype.bubble_min_width = w*2
+        subtype.bubble_min_height = h*2
+        return subtype
 
 class Phone:
     def __init__(self,font,phone_sprite,bubbles_bottom,pc_bubble_config,npc_bubble_config,max_text_width):
@@ -106,7 +120,8 @@ class Phone:
             margin_right = pc_bubble_config.margin_right,
             margin_top = pc_bubble_config.margin_top,
             margin_bottom = pc_bubble_config.margin_bottom,
-            max_text_width = max_text_width
+            max_text_width = max_text_width,
+            color = (0,0,0)
         )
 
         self.NpcMessage = Message.factory("NpcMessage",
@@ -116,7 +131,8 @@ class Phone:
             margin_right = npc_bubble_config.margin_right,
             margin_top = npc_bubble_config.margin_top,
             margin_bottom = npc_bubble_config.margin_bottom,
-            max_text_width = max_text_width
+            max_text_width = max_text_width,
+            color = (0,0,0)
         )
 
         self.sprite = phone_sprite
@@ -146,8 +162,8 @@ class Phone:
     def render(self, surface):
         if not self.dirty:
             return
-        surface.blit(self.phone_sprite,(self.x,self.y))
-        bubble_y = self.bubbles_bottom
+        surface.blit(self.sprite,(self.x,self.y))
+        bubble_y = self.sprite.get_size()[1] - self.bubbles_bottom
 
         for message in self.all_renderable_messages():
             height = message.surface.get_size()[1]
