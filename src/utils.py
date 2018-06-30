@@ -1,9 +1,11 @@
 import yaml
 from collections import OrderedDict
+import os.path
+from constants import ASSET_DIRECTORY
 
 
-def ordered_load(stream, Loader=yaml.Loader):
-    class OrderedLoader(Loader):
+def get_ordered_yaml(*location):
+    class OrderedLoader(yaml.Loader):
         pass
 
     def construct_mapping(loader, node):
@@ -14,4 +16,8 @@ def ordered_load(stream, Loader=yaml.Loader):
         yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
         construct_mapping)
 
-    return yaml.load(stream, OrderedLoader)
+    return get_yaml(*location, loader=OrderedLoader)
+
+
+def get_yaml(*location, loader=yaml.Loader):
+    return yaml.load(open(os.path.join(ASSET_DIRECTORY, *location)), loader)

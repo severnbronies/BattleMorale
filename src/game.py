@@ -1,4 +1,3 @@
-from constants import ASSET_DIRECTORY
 from tree import Tree
 from character import Character
 from spritesheet import SpriteSheet
@@ -6,7 +5,6 @@ from constants import ASSET_DIRECTORY
 import os.path
 import math
 import pygame
-
 
 
 class MoveNpcAction:
@@ -29,6 +27,7 @@ class MoveNpcAction:
         y = self.start[1]*(1.0-percentage) + self.dest[1]*(percentage)
         game.character.move((x, y))
         return self.finished
+
 
 class PcChoicesAction:
     def __init__(self, choices):
@@ -57,7 +56,6 @@ class Game:
         self.mood_high = config["mood-thresholds"]["max"]
         self.mood_low = config["mood-thresholds"]["min"]
 
-
     def add_npc_message(self, text):
         self.level.post_update(None)
 
@@ -81,7 +79,6 @@ class Game:
         else:
             self.current_action = MoveNpcAction(self.character.position, (x, y), speed)
 
-
     def change_npc_mood(self, delta):
         self.character.mood += delta
         self.level.post_update(None)
@@ -102,7 +99,7 @@ class Game:
     def on_event(self, event):
         if event.type == pygame.MOUSEBUTTONUP:
             if isinstance(self.current_action, PcChoicesAction):
-                self.current_action.set_response("aaaaa") #TODO link this with the phone rendering
+                self.current_action.set_response("aaaaa")  # TODO link this with the phone rendering
 
     def on_update(self, frametime):
         if self.current_action is None:
@@ -116,4 +113,3 @@ class Game:
     def on_render(self, screen):
         screen.blit(self.background, (0, 0))
         self.character.render(screen)
-    

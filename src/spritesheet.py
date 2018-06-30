@@ -2,6 +2,7 @@ from constants import ASSET_DIRECTORY, SCALE_FACTOR
 import pygame
 import os.path
 import yaml
+from utils import get_yaml
 
 class SpriteSheet:
     DEFAULT_SIZE = 16
@@ -10,9 +11,7 @@ class SpriteSheet:
     def __init__(self, sheet_filename, config_filename):
         image = pygame.image.load(os.path.join(ASSET_DIRECTORY, sheet_filename)).convert_alpha()
         self.sheet = pygame.transform.scale(image, (image.get_width()* SCALE_FACTOR, image.get_height()* SCALE_FACTOR))
-
-        with open(os.path.join(ASSET_DIRECTORY,config_filename)) as config:
-            self.config = yaml.load(config)
+        self.config = get_yaml(config_filename)
 
     def get_sprite(self, name):
         sprite_config = self.config.get(name,self.DEFAULT_SPRITE)

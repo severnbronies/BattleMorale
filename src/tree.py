@@ -1,10 +1,9 @@
-from utils import ordered_load
-from constants import ASSET_DIRECTORY
-import os.path
+from utils import get_ordered_yaml
+
 
 class Tree:
     def __init__(self, filename):
-        data = ordered_load(open(os.path.join(ASSET_DIRECTORY, 'levels', filename), "r"))
+        data = get_ordered_yaml("levels", filename)
         self.nodes = data["nodes"]
         self.current_node_name = list(self.nodes.keys())[0]
         self.current_action_index = 0
