@@ -1,7 +1,6 @@
 from constants import ASSET_DIRECTORY, SCALE_FACTOR
 import pygame
 import os.path
-import yaml
 from utils import get_yaml
 
 class SpriteSheet:
