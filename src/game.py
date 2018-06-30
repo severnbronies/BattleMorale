@@ -7,14 +7,17 @@ import os.path
 import pygame
 
 class Game:
-    def __init__(self, screen, start_level):
+    def __init__(self, screen, config):
         self.mood = 0.0
         self.screen = screen
-        self.level = Tree(start_level)
+        self.level = Tree(config["start-level"])
         self.current_action = None
         self.sprite_sheet = SpriteSheet("sprites.png","sprites.yaml")
         self.background = self.sprite_sheet.get_sprite("")
         self.character = Character((0,0), self.sprite_sheet.get_sprite("npc_head_happier"), self.sprite_sheet.get_sprite("npc_body_idle"))
+
+        self.win_mood = config["win-mood"]
+        self.lose_mood = config["lose-mood"]
 
     def add_npc_message(self, text):
         pass
