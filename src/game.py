@@ -12,8 +12,8 @@ class Game:
         self.screen = screen
         self.level = Tree(start_level)
         self.current_action = None
-        self.sprite_sheet = SpriteSheet("sprites.png")
-        self.chracter = Character((0,0), self.sprite_sheet.get_sprite("head01"), self.sprite_sheet.get_sprite("body01"))
+        self.sprite_sheet = SpriteSheet("sprites.png","sprites.yaml")
+        self.chracter = Character((0,0), self.sprite_sheet.get_sprite("npc_head_idle"), self.sprite_sheet.get_sprite("npc_body_idle"))
 
         self.background_dirty = False
 
