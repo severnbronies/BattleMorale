@@ -52,7 +52,7 @@ class Game:
         self.current_action = None
         self.sprite_sheet = SpriteSheet("sprites.png","sprites.yaml")
         self.background = self.sprite_sheet.get_sprite("")
-        self.character = Character((0,0), self.sprite_sheet.get_sprite("npc_head_happier"), self.sprite_sheet.get_sprite("npc_body_idle"))
+        self.character = Character((-20,0), self.sprite_sheet.get_sprite("npc_head_happier"), self.sprite_sheet.get_sprite("npc_body_idle"))
 
         self.win_mood = config["win-mood"]
         self.lose_mood = config["lose-mood"]
@@ -73,14 +73,20 @@ class Game:
             self.character.set_body(self.sprite_sheet.get_sprite(body))
         self.level.post_update(None)
 
-    def move_npc(self, x, y, speed):
-        self.current_action = MoveNpcAction(self.character.position, (x, y), speed)
+    def move_npc(self, x, y, speed=50.0):
+        if speed == 0.0:
+            self.character.move((x, y))
+            self.level.post_update(None)
+        else:
+            self.current_action = MoveNpcAction(self.character.position, (x, y), speed)
+
 
     def change_npc_mood(self, delta):
         self.character.mood += delta
         self.level.post_update(None)
 
     def change_level(self, name):
+        self.character.move((-20, 0))
         self.level = Tree(name)
 
     def wait_click(self):
