@@ -127,8 +127,5 @@ class Game:
     def on_render(self, screen):
         screen.blit(self.background, (0, 0))
         self.character.render(screen)
-<<<<<<< HEAD
-=======
         self.phone.render(screen)
     
->>>>>>> wire phone into game
