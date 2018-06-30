@@ -1,9 +1,10 @@
 from utils import ordered_load
-
+from constants import ASSET_DIRECTORY
+import os.path
 
 class Tree:
     def __init__(self, filename):
-        data = ordered_load(open(filename, "r"))
+        data = ordered_load(open(os.path.join(ASSET_DIRECTORY, 'levels', filename), "r"))
         self.nodes = data["nodes"]
         self.current_node_name = list(self.nodes.keys())[0]
         self.current_action_index = 0
