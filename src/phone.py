@@ -129,12 +129,13 @@ class Phone:
         self.NpcMessage = Message.factory("NpcMessage",
             font = font,
             sprites = npc_bubble_config.sprites,
-            margin_left = npc_bubble_config.margin_left,
-            margin_right = npc_bubble_config.margin_right,
-            margin_top = npc_bubble_config.margin_top,
-            margin_bottom = npc_bubble_config.margin_bottom,
-            max_text_width = max_text_width,
-            color = (0,0,0)
+            margin_left = npc_bubble_config.margin_left*SCALE_FACTOR,
+            margin_right = npc_bubble_config.margin_right*SCALE_FACTOR,
+            margin_top = npc_bubble_config.margin_top*SCALE_FACTOR,
+            margin_bottom = npc_bubble_config.margin_bottom*SCALE_FACTOR,
+            max_bubble_width = max_bubble_width,
+            color = (0,0,0),
+            align = "LEFT"
         )
 
         self.sprite = phone_sprite
