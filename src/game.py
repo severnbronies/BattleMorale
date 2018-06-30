@@ -16,8 +16,6 @@ class Game:
         self.background = self.sprite_sheet.get_sprite("")
         self.character = Character((0,0), self.sprite_sheet.get_sprite("npc_head_happier"), self.sprite_sheet.get_sprite("npc_body_idle"))
 
-        self.background_dirty = False
-
     def add_npc_message(self, text):
         pass
 
@@ -52,13 +50,6 @@ class Game:
             self.level.pre_update(self)
         
     def on_render(self, screen):
-        if self.background_dirty:
-            screen.blit(self.background, (0, 0))
-            self.background_dirty = False
-
-        if self.character.dirty:
-            # Draw over the character's old position
-            screen.blit(self.background, (0, 0), area=self.character.old_bounds())
-            # Redraw the character
-            self.character.render(screen)
+        screen.blit(self.background, (0, 0))
+        self.character.render(screen)
     
