@@ -52,6 +52,7 @@ class Message:
             line_width = self.font.size(text[:i])[0]
             while line_width < self.max_text_width and i < len(text):
                 i += 1
+                line_width = self.font.size(text[:i])[0]
             # if we've wrapped the text, then adjust the wrap to the last word      
             if i < len(text): 
                 i = text.rfind(" ", 0, i) + 1
@@ -81,14 +82,14 @@ class Message:
         surface.blit(self.sprites.top_left,(0,0))
         surface.blit(self.sprites.top_right,(x2,0))
         surface.blit(self.sprites.bottom_left,(0,y2))
-        surface.blit(self.sprites.bottom_right,(x1,x2))
+        surface.blit(self.sprites.bottom_right,(x2,y2))
 
         top_subsurface = surface.subsurface((x1,0,x2-x1,y1))
         bottom_subsurface = surface.subsurface((x1,y2,x2-x1,bottom_height))
         left_subsurface = surface.subsurface((0,y1,x1,y2-y1))
         right_subsurface = surface.subsurface((x2,y1,right_width,y2-y1))
         center_subsurface = surface.subsurface((x1,y1,x2-x1,y2-y1))
-
+ 
         pygame.transform.scale(self.sprites.top,top_subsurface.get_size(),top_subsurface)
         pygame.transform.scale(self.sprites.bottom,bottom_subsurface.get_size(),bottom_subsurface)
         pygame.transform.scale(self.sprites.left,left_subsurface.get_size(),left_subsurface)
@@ -98,7 +99,7 @@ class Message:
         y = self.margin_top
         for line in self.lines:
             textRender = self.font.render(line,False,self.color)
-            surface.blit(textRender,(self.margin_right,y))
+            surface.blit(textRender,(self.margin_left,y))
             y += self.line_space
 
         return surface
@@ -171,4 +172,4 @@ class Phone:
             bubble_y -= height
             if bubble_y < 0:
                 break
-            surface.blit(message.surface,(self.x+self.bubbles_left, self.y+self.bubbles_bottom)) 
+            surface.blit(message.surface,(self.x+self.bubbles_left, self.y+bubble_y)) 
