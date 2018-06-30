@@ -17,6 +17,12 @@ class Game:
     def show_phone(self, visible):
         pass
 
+    def change_level(self, name):
+        pass
+
+    def wait_click(self):
+        pass
+
     def on_event(self, event):
         pass
 
