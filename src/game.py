@@ -1,6 +1,9 @@
+from tree import Tree
+
 class Game:
-    def __init__(self):
+    def __init__(self, start_level):
         self.mood = 0.0
+        self.level = Tree(start_level)
 
     def add_npc_message(self, text):
         pass
