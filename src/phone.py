@@ -75,7 +75,7 @@ class Message:
         x2 = total_width-right_width
         y2 = total_height-bottom_height
 
-        surface = pygame.Surface((total_width,total_height))
+        surface = pygame.Surface((total_width,total_height), pygame.SRCALPHA, 32)
 
         surface.blit(self.sprites.top_left,(0,0))
         surface.blit(self.sprites.top_right,(x2,0))
