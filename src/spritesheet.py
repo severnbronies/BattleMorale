@@ -4,7 +4,8 @@ import os.path
 import yaml
 
 class SpriteSheet:
-    DEFAULT_SPRITE = {"left":0,"top":0,"width":16,"height":16}
+    DEFAULT_SIZE = 16
+    DEFAULT_SPRITE = {"left":0,"top":0,"width":DEFAULT_SIZE,"height":DEFAULT_SIZE}
 
     def __init__(self, sheet_filename, config_filename):
         image = pygame.image.load(os.path.join(ASSET_DIRECTORY, sheet_filename)).convert()
@@ -18,7 +19,7 @@ class SpriteSheet:
 
         left = sprite_config["left"] * SCALE_FACTOR
         top = sprite_config["top"] * SCALE_FACTOR
-        width = sprite_config["width"] * SCALE_FACTOR
-        height = sprite_config["height"] * SCALE_FACTOR
+        width = sprite_config.get("width",16) * SCALE_FACTOR
+        height = sprite_config.get("height",16) * SCALE_FACTOR
 
         return self.sheet.subsurface((left, top, width, height))
