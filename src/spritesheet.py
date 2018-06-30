@@ -13,7 +13,12 @@ class SpriteSheet:
         self.config = get_yaml(config_filename)
 
     def get_sprite(self, name):
-        sprite_config = self.config.get(name,self.DEFAULT_SPRITE)
+        try:
+            sprite_config = self.config[name]
+        except KeyError:
+            print("warning sprite not found:",name)
+            sprite_config = self.DEFAULT_SPRITE
+
 
         left = sprite_config["left"] * SCALE_FACTOR
         top = sprite_config["top"] * SCALE_FACTOR
