@@ -9,7 +9,7 @@ class SpriteSheet:
 
     def __init__(self, sheet_filename, config_filename):
         image = pygame.image.load(os.path.join(ASSET_DIRECTORY, sheet_filename)).convert()
-        self.sheet = pygame.transform.scale(image, image.get_width()* SCALE_FACTOR, image.get_height()* SCALE_FACTOR)
+        self.sheet = pygame.transform.scale(image, (image.get_width()* SCALE_FACTOR, image.get_height()* SCALE_FACTOR))
 
         with open(os.path.join(ASSET_DIRECTORY,config_filename)) as config:
             self.config = yaml.load(config)
