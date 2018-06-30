@@ -1,0 +1,60 @@
+background: ../level1.png
+nodes:
+
+  start: # Start
+    - type: move_npc
+      x: 24
+      y: 80
+    - type: add_npc_message
+      text: my minds kinda a mess rn, can you help me out?
+    - type: add_pc_choices
+      choices:
+        option_1: Want to talk?
+        option_2: Drink water?
+
+  option_1: # Start -> Affirm
+    - type: add_pc_message
+      text: Do you want to talk about it?
+    - type: move_npc
+      x: 56
+      y: 80
+    - type: move_npc
+      x: 56
+      y: 48
+    - type: move_npc
+      x: 105
+      y: 64
+    - type: change_npc_mood
+      offset: +1
+    - type: add_npc_message
+      text: ive been thinking about things and im not sure what 2 do
+    - choices:
+        option_1_1: What's on your mind?
+        option_1_2: I can't right now.
+
+  option_1_1: # Start -> Affirm -> Affirm
+    - type: add_pc_message
+      text: You can talk to me if you want. What's on your mind? 
+    - type: change_npc_mood
+      offset: +2
+
+  option_1_2: # Start -> Affirm -> Refute
+    - type: add_pc_message
+      text: Is this going to take long? I have band practice. 
+    - type: change_npc_mood
+      offset: -5
+
+  option_2: # Start -> Refute
+    - type: add_pc_message
+      text: Try drinking some water. Dehydration will do that. 
+    - type: change_npc_mood
+      offset: -3
+    - type: add_npc_message
+      text: im not dehydrated
+    - choices:
+        option_2_1: A
+        option_2_2: B
+
+  option_2_1: # Start -> Refute -> Affirm
+
+  option_2_2: # Start -> Refute -> Refute
