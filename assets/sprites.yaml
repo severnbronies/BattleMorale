@@ -36,8 +36,8 @@ npc_head_smile:
   left: 0
 phone:
   top: 0
-  left: 96
-  width: 80
+  left: 80
+  width: 96
   height: 176
 npc-bubble:
   left: 0
