@@ -1,8 +1,9 @@
 import pygame
+import sys
 from game import Game
 
 def main():
-    game_instance = Game()
+    game_instance = Game("level0.yaml")
 
     pygame.init()
     screen = pygame.display.set_mode((1280, 720))
