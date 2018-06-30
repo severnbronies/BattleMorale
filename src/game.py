@@ -1,3 +1,4 @@
+from constants import ASSET_DIRECTORY
 from tree import Tree
 from character import Character
 from spritesheet import SpriteSheet
