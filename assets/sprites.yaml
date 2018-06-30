@@ -1,0 +1,39 @@
+default:
+  top: 0
+  left: 0
+  width: 16
+  height: 16
+
+npc_body_idle:
+  top: 0
+  left: 16
+  width: 16
+  height: 16
+npc_body_walk_1:
+  top: 0
+  left: 32
+npc_body_walk_2:
+  top: 0
+  left: 48
+
+npc_head_idle:
+  top: 32
+  left: 0
+npc_head_sadder:
+  top: 32
+  left: 16
+npc_head_happier:
+  top: 32
+  left: 32
+npc_head_angry:
+  top: 32
+  left: 48
+npc_head_nervous:
+  top: 32
+  left: 64
+
+phone:
+  top: 0
+  left: 96
+  width: 48
+  height: 96
