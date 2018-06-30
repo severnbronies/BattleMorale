@@ -2,6 +2,14 @@ nodes:
   start:
     - type: add_npc_message
       text: OwO what's this?
+    - type: add_pc_message
+      text: He's a furry, don't pay him any attention
+    - type: add_npc_message
+      text: Oh, will he just go away?
+    - type: add_pc_message
+      text: No, but he might aproach you if you make eye contact...
+    - type: add_pc_message
+      text: If he does, just ignore him. ;)
     - type: add_pc_choices
       choices:
         lie: Nothing...
