@@ -27,7 +27,7 @@ class Game:
     def change_npc_sprite(self, head, body):
         pass
 
-    def move_npc(self, pos):
+    def move_npc(self, x, y, speed):
         pass
 
     def show_phone(self, visible):
