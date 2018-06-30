@@ -30,6 +30,19 @@ class MoveNpcAction:
         game.character.move((x, y))
         return self.finished
 
+class PcChoicesAction:
+    def __init__(self, choices):
+        self.choices = choices
+        self.response = None
+
+    def set_response(self, response):
+        self.response = response
+
+    def run(self, game, timestep):
+        if self.response is None:
+            return None
+        return list(self.choices.keys())[0]
+
 
 class Game:
     def __init__(self, screen, config):
@@ -45,19 +58,27 @@ class Game:
         self.lose_mood = config["lose-mood"]
 
     def add_npc_message(self, text):
-        pass
+        self.level.post_update(None)
+
+    def add_pc_message(self, text):
+        self.level.post_update(None)
 
     def add_pc_choices(self, choices):
-        pass
+        self.current_action = PcChoicesAction(choices)
 
-    def change_npc_sprite(self, head, body):
-        pass
+    def change_npc_sprite(self, head=None, body=None):
+        if head is not None:
+            self.character.set_head(self.sprite_sheet.get_sprite(head))
+        if body is not None:
+            self.character.set_body(self.sprite_sheet.get_sprite(body))
+        self.level.post_update(None)
 
     def move_npc(self, x, y, speed):
         self.current_action = MoveNpcAction(self.character.position, (x, y), speed)
 
-    def show_phone(self, visible):
-        pass
+    def change_npc_mood(self, delta):
+        self.character.mood += delta
+        self.level.post_update(None)
 
     def change_level(self, name):
         self.level = Tree(name)
@@ -69,9 +90,12 @@ class Game:
         image = pygame.image.load(os.path.join(ASSET_DIRECTORY, name)).convert()
         self.background = pygame.transform.scale(image, self.screen.get_size())
         self.background_dirty = True
+        self.level.post_update(None)
 
     def on_event(self, event):
-        pass
+        if event.type == pygame.MOUSEBUTTONUP:
+            if isinstance(self.current_action, PcChoicesAction):
+                self.current_action.set_response("aaaaa") #TODO link this with the phone rendering
 
     def on_update(self, frametime):
         if self.current_action is None:
