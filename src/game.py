@@ -2,6 +2,7 @@ from constants import ASSET_DIRECTORY
 from tree import Tree
 from character import Character
 from spritesheet import SpriteSheet
+from constants import ASSET_DIRECTORY
 import os.path
 import pygame
 
@@ -49,10 +50,15 @@ class Game:
     def on_update(self, frametime):
         if self.current_action is None:
             self.level.pre_update(self)
-
+        
     def on_render(self, screen):
         if self.background_dirty:
             screen.blit(self.background, (0, 0))
             self.background_dirty = False
 
+        if self.character.dirty:
+            # Draw over the character's old position
+            screen.blit(self.background, (0, 0), area=self.character.old_bounds())
+            # Redraw the character
+            self.character.render(screen)
     
