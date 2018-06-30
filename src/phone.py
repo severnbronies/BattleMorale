@@ -122,7 +122,7 @@ class Phone:
             margin_right = pc_bubble_config.margin_right*SCALE_FACTOR,
             margin_top = pc_bubble_config.margin_top*SCALE_FACTOR,
             margin_bottom = pc_bubble_config.margin_bottom*SCALE_FACTOR,
-            max_text_width = max_text_width*SCALE_FACTOR,
+            max_text_width = max_text_width,
             color = (0,0,0)
         )
 
