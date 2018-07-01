@@ -30,17 +30,14 @@ class MoveNpcAction:
 
 
 class PcChoicesAction:
-    def __init__(self, choices):
-        self.choices = choices
+    def __init__(self):
         self.response = None
 
     def set_response(self, response):
         self.response = response
 
     def run(self, game, timestep):
-        if self.response is None:
-            return None
-        return list(self.choices.keys())[0]
+        return self.response
 
 
 class DelayAction:
@@ -103,7 +100,7 @@ class Game:
         self.current_action = TextDelayAction(text)
 
     def add_pc_choices(self, choices):
-        self.current_action = PcChoicesAction(choices)
+        self.current_action = PcChoicesAction()
         self.phone.add_pc_choices(choices)
 
     def change_npc_sprite(self, head=None, body=None):

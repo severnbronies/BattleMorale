@@ -178,6 +178,8 @@ class Phone:
         self.options = []
         self.dirty = True
 
+        self.screen_top = 25*SCALE_FACTOR
+
     def get_bounds(self):
         w,h = self.sprite.get_size()
         return pygame.Rect(self.x,self.y,w,h)
@@ -194,7 +196,7 @@ class Phone:
     def render_message(self, message, surface, width, height, bubble_y):
         bubble_width, bubble_height = message.surface.get_size()
         bubble_y -= bubble_height + SCALE_FACTOR #TODO CONST: bubble vertical gap
-        if bubble_y < 0:
+        if bubble_y < self.screen_top:
             return (None,None)
         if message.align == "RIGHT":
             bubble_x = width - self.bubble_margin - bubble_width
@@ -230,6 +232,8 @@ class Phone:
 
         for message in self.messages[::-1]:
             bubble_x,bubble_y = self.render_message(message,surface,width,height,bubble_y)
+            if bubble_y is None:
+                return
     
     def on_click_return_key(self,x,y):
         key = None
