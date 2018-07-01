@@ -9,7 +9,7 @@ def main():
 
     pygame.init()
     screen = pygame.display.set_mode(WINDOW_SIZE)
-    pygame.display.set_caption("First Pygame Application")
+    pygame.display.set_caption("Battle Morale")
 
     config = get_yaml("global.yaml")
     game_instance = Game(screen, config)
