@@ -43,6 +43,21 @@ class PcChoicesAction:
         return list(self.choices.keys())[0]
 
 
+class DelayAction:
+    def __init__(self, duration):
+        self.duration = duration
+        self.progress = 0.0
+
+    def run(self, game, timestep):
+        self.progress += timestep / 1000
+
+        percentage = self.progress / self.duration
+        if percentage > 1.0:
+            return True
+        else:
+            return None
+
+
 class Game:
     def __init__(self, screen, config):
         self.mood = 0.0
@@ -67,14 +82,13 @@ class Game:
             10*SCALE_FACTOR
         )
 
-
     def add_npc_message(self, text):
         self.phone.add_npc_message(text)
-        self.level.post_update(None)
+        self.current_action = DelayAction(len(text) * 0.05)
 
     def add_pc_message(self, text):
         self.phone.add_pc_message(text)
-        self.level.post_update(None)
+        self.current_action = DelayAction(len(text) * 0.05)
 
     def add_pc_choices(self, choices):
         self.current_action = PcChoicesAction(choices)
@@ -128,4 +142,4 @@ class Game:
         screen.blit(self.background, (0, 0))
         self.character.render(screen)
         self.phone.render(screen)
-    
+
