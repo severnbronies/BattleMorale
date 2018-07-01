@@ -49,22 +49,25 @@ class Message:
         self.text_width = 0
 
         max_text_width = self.max_bubble_width-self.margin_left-self.margin_right
-        while text:
-            i = 1
-            # determine maximum width of line
-            line_width = self.font.size(text[:i])[0]
-            while line_width < max_text_width and i < len(text):
-                i += 1
-                line_width = self.font.size(text[:i])[0]
-            # if we've wrapped the text, then adjust the wrap to the last word      
-            if i < len(text): 
-                i = text.rfind(" ", 0, i) + 1
+        pre_lines = text.splitlines()
 
-            self.lines.append(text[:i])
-            self.text_height += self.line_space
-            if self.text_width < line_width:
-                self.text_width = line_width
-            text = text[i:]
+        for line_text in pre_lines:
+            while line_text:
+                i = 1
+                # determine maximum width of line
+                line_width = self.font.size(line_text[:i])[0]
+                while line_width < max_text_width and i < len(line_text):
+                    i += 1
+                    line_width = self.font.size(line_text[:i])[0]
+                # if we've wrapped the text, then adjust the wrap to the last word      
+                if i < len(line_text): 
+                    i = line_text.rfind(" ", 0, i) + 1
+
+                self.lines.append(line_text[:i])
+                self.text_height += self.line_space
+                if self.text_width < line_width:
+                    self.text_width = line_width
+                line_text = line_text[i:]
     
     def pre_render(self):
         total_width = self.text_width + self.margin_left + self.margin_right
@@ -244,5 +247,3 @@ class Phone:
         if key is not None:
             self.options = []
         return key
-        
-            
