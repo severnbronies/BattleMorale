@@ -45,7 +45,7 @@ global-nodes:
     - type: change_npc_sprite
       head: npc_head_angry
     - type: move_npc
-      x: -180
+      x: -20
       y: 82
       speed: 20
     - type: add_pc_choices
