@@ -1,5 +1,7 @@
 nodes:
   start:
+    - type: set_background
+      file: title.png
     - type: add_pc_choices
       choices:
         start-game: Play
