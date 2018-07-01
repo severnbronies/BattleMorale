@@ -128,6 +128,10 @@ class Game:
     def wait_click(self):
         pass
 
+    def set_node(self, name):
+        self.level.set_node(name)
+        self.level.post_update(None)
+
     def set_background(self, file):
         image = pygame.image.load(os.path.join(ASSET_DIRECTORY, file)).convert()
         self.background = pygame.transform.scale(image, self.screen.get_size())
