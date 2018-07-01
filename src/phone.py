@@ -122,7 +122,6 @@ class ChoiceMixin:
     def __init__(self,text,key):
         super().__init__(text)
         self.key = key
-        print("test test test",key)
     
     def get_bounds(self):
         return pygame.Rect(self.x,self.y,*self.surface.get_size())

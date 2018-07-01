@@ -4,7 +4,7 @@ mood-thresholds:
   max: 10
 
 notification-sound: "399191__spiceprogram__drip-echo.wav"
-default-music: Comfortable Mystery 4.mp3
+default-music: Comfortable Mystery 4.ogg
 
 font:
   file: "Greypixels 2.ttf"
