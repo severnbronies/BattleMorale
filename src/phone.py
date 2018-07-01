@@ -171,7 +171,7 @@ class Phone:
         self.bubbles_bottom = bubbles_bottom
         self.bubble_margin = bubble_margin
 
-        self.x = 0
+        self.x = 320*SCALE_FACTOR - self.sprite.get_size()[0]
         self.y = 0
 
         self.messages = []
@@ -217,8 +217,9 @@ class Phone:
         if keyboard_height > 0:
             keyboard_height += SCALE_FACTOR*3
             keyboard_width = self.keyboard_back_sprite.get_size()[0]
-            keyboard_y = height - self.bubbles_bottom - keyboard_height
-            surface.blit(self.keyboard_back_sprite, (8*SCALE_FACTOR,keyboard_y), (0,0,keyboard_width,keyboard_height))
+            keyboard_y = height - self.bubbles_bottom - keyboard_height + self.y
+            keyboard_x = 8*SCALE_FACTOR + self.x
+            surface.blit(self.keyboard_back_sprite, (keyboard_x,keyboard_y), (0,0,keyboard_width,keyboard_height))
 
         for message in self.options[::-1]:
             bubble_x,bubble_y = self.render_message(message,surface,width,height,bubble_y)
