@@ -44,14 +44,22 @@ nodes:
       text: I told them I couldn't make the party
     - type: add_pc_choices
       choices:
-        option_2: I'd be upset too
-        option_3: they'll understand
+        option_2a: I'd be upset too
+        option_2b: they'll understand
 
-  option_2:
+  option_2a:
     - type: add_pc_message
       text: Yeah I'd be upset about that too.
     - type: change_npc_mood
       delta: -3
+    - type: set_node
+      name: option_3
+
+  option_2b:
+    - type: add_pc_message
+      text: I'm sure they'll understand, stuff happens...
+    - type: change_npc_mood
+      delta: +1
     - type: set_node
       name: option_3
 
