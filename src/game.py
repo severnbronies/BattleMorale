@@ -58,9 +58,13 @@ class DelayAction:
             return None
 
 
+class TextDelayAction(DelayAction):
+    def __init__(self, text):
+        super().__init__(len(text) * 0.05)
+
+
 class Game:
     def __init__(self, screen, config):
-        self.mood = 0.0
         self.screen = screen
         self.level = Tree(config["start-level"])
         self.current_action = None
@@ -84,11 +88,11 @@ class Game:
 
     def add_npc_message(self, text):
         self.phone.add_npc_message(text)
-        self.current_action = DelayAction(len(text) * 0.05)
+        self.current_action = TextDelayAction(text)
 
     def add_pc_message(self, text):
         self.phone.add_pc_message(text)
-        self.current_action = DelayAction(len(text) * 0.05)
+        self.current_action = TextDelayAction(text)
 
     def add_pc_choices(self, choices):
         self.current_action = PcChoicesAction(choices)
@@ -118,8 +122,8 @@ class Game:
     def wait_click(self):
         pass
 
-    def set_background(self, name):
-        image = pygame.image.load(os.path.join(ASSET_DIRECTORY, name)).convert()
+    def set_background(self, file):
+        image = pygame.image.load(os.path.join(ASSET_DIRECTORY, file)).convert()
         self.background = pygame.transform.scale(image, self.screen.get_size())
         self.background_dirty = True
         self.level.post_update(None)

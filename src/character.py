@@ -7,6 +7,7 @@ class Character:
         self.old_position = position
         self.set_head(head)
         self.set_body(body)
+        self.mood = 0
 
     def set_head(self, head):
         self.head = head
