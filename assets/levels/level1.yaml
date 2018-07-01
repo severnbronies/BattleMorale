@@ -1,10 +1,16 @@
-background: ../level1.png
 nodes:
 
-  start: # Start
+  start: 
+    - type: set_background
+      file: level-1.png
     - type: move_npc
-      x: 24
+      x: -16
       y: 80
+      speed: 0
+    - type: move_npc
+      x: 16
+      y: 80
+      speed: 1
     - type: add_npc_message
       text: my minds kinda a mess rn, can you help me out?
     - type: add_pc_choices
@@ -12,49 +18,109 @@ nodes:
         option_1: Want to talk?
         option_2: Drink water?
 
-  option_1: # Start -> Affirm
+  option_1: 
     - type: add_pc_message
       text: Do you want to talk about it?
+    - type: change_npc_mood
+      offset: +3
     - type: move_npc
-      x: 56
+      x: 48
       y: 80
     - type: move_npc
-      x: 56
+      x: 48
       y: 48
     - type: move_npc
-      x: 105
-      y: 64
-    - type: change_npc_mood
-      offset: +1
+      x: 64
+      y: 48
     - type: add_npc_message
-      text: ive been thinking about things and im not sure what 2 do
+      text: I've been thinking about things and I'm not sure what todo
+    - type: add_npc_message
+      text: i'm just the worst 
     - choices:
         option_1_1: What's on your mind?
-        option_1_2: I can't right now.
 
-  option_1_1: # Start -> Affirm -> Affirm
+  option_1_1: 
     - type: add_pc_message
-      text: You can talk to me if you want. What's on your mind? 
+      text: What's on your mind? 
     - type: change_npc_mood
       offset: +2
+    - type: move_npc
+      x: 64
+      y: 64
+    - type: add_npc_message
+      text: i cant think straight
+    - type: move_npc
+      x: 144
+      y: 64
+    - type: add_npc_message
+      text: I dont think I'm supposed to feel liek this
+    - type: move_npc
+      x: 144
+      y: 48
+    - type: add_npc_message
+      text: like*
+    - type: move_npc
+      x: 112
+      y: 48
+    - choices:
+        option_3: How do you feel?
+        option_4: See a therapist.
 
-  option_1_2: # Start -> Affirm -> Refute
-    - type: add_pc_message
-      text: Is this going to take long? I have band practice. 
-    - type: change_npc_mood
-      offset: -5
-
-  option_2: # Start -> Refute
+  option_2: 
     - type: add_pc_message
       text: Try drinking some water. Dehydration will do that. 
     - type: change_npc_mood
       offset: -3
+    - type: move_npc
+      x: 6
+      y: 80
+      speed: .5
+    - type: change_npc_sprite
+      head: npc_head_angry
     - type: add_npc_message
       text: im not dehydrated
+    - type: add_npc_message
+      text: anyway...
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: move_npc
+      x: 16
+      y: 80
+      speed: .5
+    - type: add_npc_message
+      text: >
+        i cant think straight.
+        I dont think I'm supposed to feel thigns like this
     - choices:
-        option_2_1: A
-        option_2_2: B
+        option_1: How do you feel?
+        option_4: See a therapist.
 
-  option_2_1: # Start -> Refute -> Affirm
+  option_4: 
+    - type: add_pc_message
+      text: Maybe you should talk to a therapist.
+    - type: add_pc_message
+      text: I'm sure a professional could help you work this out. 
+    - type: change_npc_mood
+      offset: -1
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: add_npc_message
+      text: ok...
+    - choices: 
+        option_5: I believe in you.
+        option_6: Do it now. 
 
-  option_2_2: # Start -> Refute -> Refute
+  option_5: 
+    - type: add_pc_message
+      text: I believe in you. I'm here for you, but a professional could help you better than me. 
+    - type: add_pc_message
+      text: I can help you find someone? 
+    - type: change_npc_mood
+      offset: +2
+    - type: add_npc_message
+      text: 
+
+  option_6: 
+    - type: add_pc_message
+      text: Do it now. I'll help you find someone. 
+    
