@@ -147,6 +147,10 @@ class Game:
     def stop_music(self):
         pygame.mixer.music.stop()
 
+    def clear_phone(self):
+        self.phone.messages = []
+        self.level.post_update(None)
+
     def on_event(self, event):
         if event.type == pygame.MOUSEBUTTONUP:
             if isinstance(self.current_action, PcChoicesAction):
@@ -159,8 +163,10 @@ class Game:
     def on_update(self, frametime):
         if self.current_action is None:
             if self.character.mood >= self.mood_high:
+                self.character.mood = 0
                 self.level.set_node('mood_too_high')
             elif self.character.mood <= self.mood_low:
+                self.character.mood = 0
                 self.level.set_node('mood_too_low')
             if self.character.mood_changed:
                 for limit, sprite in self.mood_sprites.items():
