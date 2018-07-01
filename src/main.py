@@ -13,6 +13,7 @@ def main():
 
     config = get_yaml("global.yaml")
     game_instance = Game(screen, config)
+    game_instance.play_music(config["default-music"])
 
     clock = pygame.time.Clock()
 
