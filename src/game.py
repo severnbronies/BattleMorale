@@ -138,6 +138,9 @@ class Game:
         pygame.mixer.music.load(os.path.join(ASSET_DIRECTORY, name))
         pygame.mixer.music.play(-1)
 
+    def stop_music(self):
+        pygame.mixer.music.stop()
+
     def on_event(self, event):
         if event.type == pygame.MOUSEBUTTONUP:
             if isinstance(self.current_action, PcChoicesAction):
