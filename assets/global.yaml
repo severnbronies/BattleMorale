@@ -30,3 +30,11 @@ choice-buttons:
   margin_right: 4
   margin_bottom: 4
   sprites: "choice-button"
+
+global-nodes:
+  mood_too_low:
+    - type: change_level
+      name: game_over.yaml
+  mood_too_high:
+    - type: change_level
+      name: game_over.yaml
