@@ -1,0 +1,281 @@
+nodes:
+  part_1:
+    - type: set_background
+      file: level-2.png
+    - type: move_npc
+      x: -16
+      y: 100
+      speed: 0
+    - type: move_npc
+      x: 16
+      y: 100
+      speed: 0
+    - type: add_npc_message
+      text: my parents are scary :(
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: add_pc_choices
+      choices:
+        option_1-1: So are mine
+        option_1-2: You can't choose family
+        option_1-3: You should listen to them
+  option_1-1:
+    - type: add_pc_message
+      text: I understand, so are mine. You don't have to listen to them.
+    - type: change_npc_mood
+      delta: +2
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 100
+      y: 120
+    - type: set_node
+      name: part_2
+  option_1-2:
+    - type: add_pc_message
+      text: You can't choose family.
+    - type: change_npc_mood
+      delta: -1
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: set_node
+      name: part_2
+  option_1-3:
+    - type: add_pc_message
+      text: Listening to your parents is important.
+    - type: change_npc_mood
+      delta: -3
+    - type: change_npc_sprite
+      head: npc_head_angry
+    - type: move_npc
+      x: 10
+      y: 100
+      speed: 25
+    - type: set_node
+      name: part_2
+  part_2:
+    - type: add_npc_message
+      text: i want to tell them...
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: add_pc_choices
+      choices:
+        option_2-1: Do it
+        option_2-2: They might get cross
+        option_2-3: You don't owe them anything
+  option_2-1:
+    - type: add_pc_message
+      text: you should do it, if you feel safe
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: change_npc_mood
+      delta: +2
+    - type: move_npc
+      x: 100
+      y: 120
+    - type: set_node
+      name: part_3
+  option_2-2:
+    - type: add_pc_message
+      text: they might get cross
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: change_npc_mood
+      delta: -3
+    - type: set_node
+      name: part_3
+  option_2-3:
+    - type: add_pc_message
+      text: you don't owe them anything
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: change_npc_mood
+      delta: +1
+    - type: move_npc
+      x: 100
+      y: 120
+    - type: set_node
+      name: part_3
+  part_3:
+    - type: add_npc_message
+      text: i let them all down...
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: add_pc_choices
+      choices:
+        option_3-1: that's not true!
+        option_3-2: yeah...
+        option_3-3: Don't let yourself down
+        option_3-4: Who cares
+  option_3-1:
+    - type: add_pc_message
+      text: that's not true! you have to be yourself <3
+    - type: change_npc_mood
+      delta: +2
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 100
+      y: 120
+    - type: set_node
+      name: part_4
+  option_3-2:
+    - type: add_pc_message
+      text: yeah, they might be disappointed...
+    - type: change_npc_mood
+      delta: -4
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: move_npc
+      x: 16
+      y: 100
+      speed: 25
+    - type: set_node
+      name: part_4
+  option_3-3:
+    - type: add_pc_message
+      text: it's more important not to let yourself down
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: move_npc
+      x: 100
+      y: 120
+    - type: set_node
+      name: part_4
+  option_3-4:
+    - type: add_pc_message
+      text: who cares, their opinion doesn't matter!
+    - type: change_npc_mood
+      delta: -1
+    - type: change_npc_sprite
+      head: npc_head_angry
+    - type: set_node
+      name: part_4
+  part_4:
+    - type: add_npc_message
+      text: why don't they approve of me??
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: add_pc_choices
+      choices:
+        option_4-1: they don't deserve you
+        option_4-2: they will come around with time
+        option_4-3: why do you care?
+  option_4-1:
+    - type: add_pc_message
+      text: because they don't deserve you
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_angry
+    - type: set_node
+      name: part_5
+  option_4-2:
+    - type: add_pc_message
+      text: they will come around with time
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 200
+      y: 110
+    - type: set_node
+      name: part_5
+  option_4-3:
+    - type: add_pc_message
+      text: why do you need their approval?
+    - type: change_npc_mood
+      delta: -2
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: set_node
+      name: part_5
+  part_5:
+    - type: add_npc_message
+      text: I'll never be able to escape them
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: add_pc_choices
+      choices:
+        option_5-1: You can leave right now!
+        option_5-2: You'll be able to get away
+        option_5-3: Be patient
+  option_5-1:
+    - type: add_pc_message
+      text: you can leave right now!
+    - type: change_npc_mood
+      delta: +2
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 200
+      y: 110
+    - type: set_node
+      name: part_6
+  option_5-2:
+    - type: add_pc_message
+      text: eventually, you'll be able to get away
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 200
+      y: 110
+    - type: set_node
+      name: part_6
+  option_5-3:
+    - type: add_pc_message
+      text: you have to be patient
+    - type: change_npc_mood
+      delta: -2
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: set_node
+      name: part_6
+  part_6:
+    - type: add_npc_message
+      text: they won't even talk to me
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: add_pc_choices
+      choices:
+        option_6-1: You can talk to me
+        option_6-2: Find common ground
+        option_6-3: You don't need them
+  option_6-1:
+    - type: add_pc_message
+      text: you can talk to me instead!
+    - type: change_npc_mood
+      delta: +2
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: set_node
+      name: finish
+  option_6-2:
+    - type: add_pc_message
+      text: you need to find common ground
+    - type: change_npc_mood
+      delta: -1
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: set_node
+      name: finish
+  option_6-3:
+    - type: add_pc_message
+      text: you don't need them
+    - type: change_npc_mood
+      delta: -2
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: set_node
+      name: finish
+  finish:
+    - type: move_npc
+      x: 250
+      y: 110
+    - type: change_level
+      name: level3.yaml

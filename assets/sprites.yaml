@@ -1,0 +1,56 @@
+default:
+  top: 0
+  left: 0
+  width: 16
+  height: 16
+
+npc_body_idle:
+  top: 0
+  left: 16
+  width: 16
+  height: 16
+npc_body_walk_1:
+  top: 0
+  left: 32
+npc_body_walk_2:
+  top: 0
+  left: 48
+
+npc_head_idle:
+  top: 32
+  left: 0
+npc_head_sadder:
+  top: 32
+  left: 16
+npc_head_happier:
+  top: 32
+  left: 32
+npc_head_angry:
+  top: 32
+  left: 48
+npc_head_nervous:
+  top: 32
+  left: 64
+npc_head_smile:
+  top: 48
+  left: 0
+phone:
+  top: 0
+  left: 80
+  width: 96
+  height: 176
+phone-keyboard:
+  top: 110
+  left: 0
+  width: 80
+  height: 60
+npc-bubble:
+  left: 0
+  top: 16
+pc-bubble:
+  left: 48
+  top: 16
+choice-button:
+  left: 0
+  top: 64
+  height: 8

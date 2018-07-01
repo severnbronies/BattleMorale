@@ -1,0 +1,30 @@
+nodes:
+  start:
+    - type: add_npc_message
+      text: OwO what's this?
+    - type: add_pc_message
+      text: He's a furry, don't pay him any attention
+    - type: add_npc_message
+      text: Oh, will he just go away?
+    - type: add_pc_message
+      text: No, but he might aproach you if you make eye contact...
+    - type: add_pc_message
+      text: If he does, just ignore him. ;)
+    - type: add_pc_choices
+      choices:
+        lie: Nothing...
+        truth: an example yaml file
+  lie:
+    - type: change_npc_mood
+      delta: -5
+    - type: move_npc
+      x: -20
+      y: 50
+      speed: 10
+    - type: change_level
+      name: gameover.yaml
+  truth:
+    - type: change_npc_mood
+      delta: 10
+    - type: change_level
+      name: you_win.yaml

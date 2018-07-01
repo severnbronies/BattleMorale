@@ -1,0 +1,12 @@
+nodes:
+  start:
+    - type: set_background
+      file: title.png
+    - type: add_pc_message
+      text: hello?
+    - type: add_pc_choices
+      choices:
+        start-game: Play
+  start-game:
+    - type: change_level
+      name: level1.yaml

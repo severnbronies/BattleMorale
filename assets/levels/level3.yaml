@@ -1,0 +1,106 @@
+nodes:
+
+  start: 
+    - type: set_background
+      file: level-3.png
+    - type: move_npc
+      x: -16
+      y: 110
+      speed: 0
+    - type: move_npc
+      x: 16
+      y: 110
+    - type: add_npc_message
+      text: My friend is ignoring me, I'm not sure what's up.
+    - type: add_pc_choices
+      choices:
+        option_1: ask how long for?
+        option_1_1: say they're busy
+
+  option_1: 
+    - type: add_pc_message
+      text: When did they last message you?
+    - type: change_npc_mood
+      delta: +1
+    - type: add_npc_message
+      text: About 3 hours ago
+    - type: add_pc_choices
+      choices:
+        option_1_1: say they're busy
+
+  option_1_1: 
+    - type: add_pc_message
+      text: They might just be busy right now.
+    - type: add_npc_message
+      text: I guess you might be right
+    - type: move_npc
+      x: 100
+      y: 110
+    - type: change_npc_mood
+      delta: -1
+    - type: add_npc_message
+      text: But what if I've upset them?
+    - type: add_npc_message
+      text: I told them I couldn't make the party
+    - type: add_pc_choices
+      choices:
+        option_2: I'd be upset too
+        option_3: they'll understand
+
+  option_2:
+    - type: add_pc_message
+      text: Yeah I'd be upset about that too.
+    - type: change_npc_mood
+      delta: -3
+    - type: set_node
+      name: option_3
+
+  option_3:
+    - type: move_npc
+      x: 150
+      y: 110
+    - type: add_npc_message
+      text: What should I do about it?
+    - type: add_pc_choices
+      choices:
+        option_4: ask to meet another time
+        option_5: tell them to apologise
+
+  option_4:
+    - type: add_pc_message
+      text: Maybe you could meet them another time
+    - type: add_npc_message
+      text: Oooh that's a good idea.
+    - type: move_npc
+      x: 190
+      y: 110
+    - type: add_npc_message
+      text: Yay they want to meet me next week
+    - type: change_npc_mood
+      delta: +2
+    - type: add_npc_message
+      text: Thanks for your help
+    - type: move_npc
+      x: 230
+      y: 110
+    - type: change_level
+      name: level4.yaml
+
+  option_5:
+    - type: add_pc_message
+      text: Might be an idea to apologise
+    - type: add_npc_message
+      text: Yeah maybe you're right...
+    - type: change_npc_mood
+      delta: -2
+    - type: add_npc_message
+      text: I haven't seen them in ages though
+    - type: add_pc_choices
+      choices:
+        option_4: ask to meet another time
+
+
+
+
+
+    

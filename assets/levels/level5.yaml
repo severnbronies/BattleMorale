@@ -1,0 +1,168 @@
+nodes:
+
+  start:
+    - type: set_background
+      file: level-5.png
+    - type: move_npc
+      x: 53
+      y: 80
+    - type: add_npc_message
+      text: i think i wanna do this
+    - type: add_npc_message
+      text: im gonna tell them 
+    - type: move_npc
+      x: 48
+      y: 32
+    - type: move_npc
+      x: 42
+      y: 112
+    - type: move_npc
+      x: 53
+      y: 80
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: add_npc_message
+      text: i just dont know how...
+    - type: add_pc_choices
+      choices:
+        option_1a: What's the game plan?
+        option_1b: One step at a time.
+        option_1c: Just do it! 
+  
+  option_1a: 
+    - type: add_pc_message
+      text: What's the game plan? I'm here for you all the way.
+    - type: change_npc_mood
+      delta: +2
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: add_npc_message
+      text: |
+        first i'm goin to meditiate on it
+        then im gonna tell people
+        but make sure i have people with me so its not dangeorous
+    - type: add_npc_message
+      text: can you come here?
+    - type: add_pc_choices
+      choices:
+        option_2a: I can.
+        option_2b: I can't.
+        option_2c: I shouldn't.
+  
+  option_1b: 
+    - type: add_pc_message
+      text: Take it one step at a time. Slow and steady wins the race.
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: add_npc_message
+      text: ok 
+    - type: add_npc_message
+      text: can i ask something?
+    - type: add_npc_message
+      text: can you come and help me do this?
+    - type: add_pc_choices
+      choices:
+        option_2a: I can.
+        option_2b: I can't.
+        option_2c: I shouldn't.
+  
+  option_1c: 
+    - type: add_pc_message
+      text: Just do it! You've waited long enough!
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: add_npc_message
+      text: ok, ill do it right now
+    - type: add_pc_choices
+      choices:
+        option_3a: Okay. Good luck!
+
+  option_2a:
+    - type: add_pc_message
+      text: I can do that, sure.
+    - type: change_npc_mood
+      delta: +3
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: add_npc_message
+      text: omg thank you thank you thank you <3 <3 <3 
+    - type: add_pc_choices
+      choices:
+        option_3b: Be there soon.
+
+  option_2b:
+    - type: add_pc_message
+      text: I can't
+    - type: change_npc_mood
+      delta: -2
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: add_npc_message
+      text: aww
+    - type: add_npc_message
+      text: :(
+    - type: add_pc_choices
+      choices:
+        option_3a: Good luck!
+  
+  option_2c: 
+    - type: add_pc_message
+      text: I shouldn't. You need to be able to do this yourself. To prove you're strong, to prove you're indepednent. Because that's who you are. 
+    - type: change_npc_mood
+      delta: +5
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: add_npc_message
+      text: aww :(
+    - type: add_npc_message
+      text: ok...
+      choices:
+        option_3a: Good luck!
+
+  option_3a: 
+    - type: add_pc_message
+      text: Good luck!
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: add_npc_message
+      text: thx
+    - type: move_npc
+      x: 102
+      y: 48
+      speed: 80
+    - type: move_npc
+      x: 160
+      y: 80
+      speed: 80
+    - type: move_npc
+      x: 187
+      y: 80
+      speed: 65
+    - type: add_npc_message
+      text: thank you :)
+    - type: change_npc_sprite
+      head: npc_head_smile
+    - type: add_pc_choices
+      choices:
+        end: THE END
+
+  option_3b: 
+    - type: add_pc_message
+      text: I'll be there as soon as I can, just hold on, okay? 
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: add_npc_message
+      text: ok :)
+    - type: add_pc_choices
+      choices:
+        end: THE END
+  
+  end:
+    - type: change_level
+      name: level0.yaml
