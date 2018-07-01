@@ -22,7 +22,7 @@ nodes:
     - type: add_pc_message
       text: Do you want to talk about it?
     - type: change_npc_mood
-      offset: +3
+      detla: +3
     - type: move_npc
       x: 48
       y: 80
@@ -36,14 +36,15 @@ nodes:
       text: I've been thinking about things and I'm not sure what todo
     - type: add_npc_message
       text: i'm just the worst 
-    - choices:
+    - type: add_pc_choices
+      choices:
         option_1_1: What's on your mind?
 
   option_1_1: 
     - type: add_pc_message
       text: What's on your mind? 
     - type: change_npc_mood
-      offset: +2
+      detla: +2
     - type: move_npc
       x: 64
       y: 64
@@ -62,7 +63,8 @@ nodes:
     - type: move_npc
       x: 112
       y: 48
-    - choices:
+    - type: add_pc_choices
+      choices:
         option_3: How do you feel?
         option_4: See a therapist.
 
@@ -70,7 +72,7 @@ nodes:
     - type: add_pc_message
       text: Try drinking some water. Dehydration will do that. 
     - type: change_npc_mood
-      offset: -3
+      detla: -3
     - type: move_npc
       x: 6
       y: 80
@@ -91,7 +93,8 @@ nodes:
       text: >
         i cant think straight.
         I dont think I'm supposed to feel thigns like this
-    - choices:
+    - type: add_pc_choices
+      choices:
         option_1: How do you feel?
         option_4: See a therapist.
 
@@ -101,12 +104,13 @@ nodes:
     - type: add_pc_message
       text: I'm sure a professional could help you work this out. 
     - type: change_npc_mood
-      offset: -1
+      detla: -1
     - type: change_npc_sprite
       head: npc_head_sadder
     - type: add_npc_message
       text: ok...
-    - choices: 
+    - type: add_pc_choices
+      choices: 
         option_5: I believe in you.
         option_6: Do it now. 
 
@@ -116,11 +120,104 @@ nodes:
     - type: add_pc_message
       text: I can help you find someone? 
     - type: change_npc_mood
-      offset: +2
+      detla: +2
     - type: add_npc_message
-      text: 
+      text: thank you <3
+    - type: move_npc
+      x: 112
+      y: 32
+    - type: move_npc
+      x: 144
+      y: 32
+    - type: move_npc
+      x: 144
+      y: 0
+    - type: move_npc
+      x: 176
+      y: 0
+    - type: move_npc
+      x: 176
+      y: 64
+    - type: add_npc_message
+      text: one more thing
+    - type: add_pc_choices
+      choices:
+        option_7: Yes?
+        option_8: What now?
 
   option_6: 
     - type: add_pc_message
       text: Do it now. I'll help you find someone. 
-    
+    - type: add_npc_message
+      text: thanks...
+    - type: change_npc_mood
+      detla: -1
+    - type: add_npc_message
+      text: one more thing...
+    - type: add_pc_choices
+      choices:
+        option_7: Yes?
+        option_8: What now?
+
+  option_7:
+    - type: add_pc_message
+      text: Yes?
+    - type: add_npc_message
+      text: thank you for being a friend
+    - type: add_pc_choices
+      choices:
+        option_9: I'm here for you.
+        option_10: Shove off.
+
+  option_8:
+    - type: add_pc_message
+      text: What now?
+    - type: add_npc_message
+      text: i cuold really use a friend
+    - type: add_pc_choices
+      choices:
+        option_9: I'm here for you.
+        option_10: Shove off.
+  
+  option_9:
+    - type: add_pc_message
+      text: I'm here for you.
+    - type: move_npc
+      x: 160
+      y: 80 
+    - type: move_npc
+      x: 160
+      y: 112
+    - type: move_npc
+      x: 176
+      y: 112
+    - type: move_npc
+      x: 176
+      y: 112
+    - type: move_npc
+      x: 176
+      y: 88
+    - type: move_npc
+      x: 192
+      y: 80
+    - type: move_npc
+      x: 208
+      y: 80
+    - type: add_npc_message
+      text: thank you
+    - type: change_level
+      name: level2.yaml
+
+  option_10: 
+    - type: add_pc_message
+      text: Shove off.
+    - type: add_npc_message
+      text: omg
+    - type: add_npc_message
+      text: fuck u
+    - type: add_npc_message
+      text: here i am exposing my vulerabiltieis and your just being a dick
+    - type: add_npc_message
+      text: asshole
+    - type: change_level
+      name: gameover_toolow.yaml
