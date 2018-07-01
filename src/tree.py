@@ -36,5 +36,5 @@ class Tree:
             self.current_action_index += 1
 
     def set_node(self, name):
-        self.current_node_name = state
+        self.current_node_name = name
         self.current_action_index = 0
