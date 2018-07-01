@@ -29,6 +29,7 @@ BubbleConfig.from_dict = _from_dict
 
 
 class Message:
+    interactable = False
     font = None
     sprites = None
     margin_left = None
@@ -107,17 +108,27 @@ class Message:
         return surface
     
     @classmethod
-    def factory(cls, name, **options):
-        subtype = type(name, (cls,), options)
+    def factory(cls, name, *mixins, **options):
+        subtype = type(name, mixins+(cls,), options)
         w,h = options["sprites"].top_left.get_size()
 
         subtype.bubble_min_width = w*2
         subtype.bubble_min_height = h*2
         return subtype
 
-class Phone:
-    def __init__(self,font,phone_sprite,bubbles_bottom,pc_bubble_config,npc_bubble_config,bubble_margin):
+class ChoiceMixin:
+    interactable = True
 
+    def __init__(self,text,key):
+        super().__init__(text)
+        self.key = key
+        print("test test test",key)
+    
+    def get_bounds(self):
+        return pygame.Rect(self.x,self.y,*self.surface.get_size())
+
+class Phone:
+    def __init__(self,font,phone_sprite,bubbles_bottom,pc_bubble_config,npc_bubble_config,choice_config,bubble_margin):
         max_bubble_width = phone_sprite.get_size()[0]-bubble_margin*2
 
         self.PcMessage = Message.factory("PcMessage",
@@ -144,6 +155,18 @@ class Phone:
             align = "LEFT"
         )
 
+        self.Choice = Message.factory("Choice",ChoiceMixin,
+            font = font,
+            sprites = choice_config.sprites,
+            margin_left = choice_config.margin_left*SCALE_FACTOR,
+            margin_right = choice_config.margin_right*SCALE_FACTOR,
+            margin_top = choice_config.margin_top*SCALE_FACTOR,
+            margin_bottom = choice_config.margin_bottom*SCALE_FACTOR,
+            max_bubble_width = max_bubble_width,
+            color = (0,0,0),
+            align = "CENTER"
+        )
+
         self.sprite = phone_sprite
         self.bubbles_bottom = bubbles_bottom
         self.bubble_margin = bubble_margin
@@ -151,10 +174,13 @@ class Phone:
         self.x = 0
         self.y = 0
 
-
         self.messages = []
         self.options = []
         self.dirty = True
+
+    def get_bounds(self):
+        w,h = self.sprite.get_size()
+        return pygame.Rect(self.x,self.y,w,h)
 
     def add_npc_message(self, text):
         self.messages.append(self.NpcMessage(text))
@@ -163,7 +189,7 @@ class Phone:
         self.messages.append(self.PcMessage(text))
 
     def add_pc_choices(self, choices):
-        self.options = [PcMessage(text,key) for (key,text) in choices.items()]
+        self.options = [self.Choice(text,key=key) for (key,text) in choices.items()]
 
     def all_renderable_messages(self):
         yield from self.options[::-1]
@@ -187,4 +213,20 @@ class Phone:
                 bubble_x = (width - bubble_width)/2
             else: #default LEFT
                 bubble_x = self.bubble_margin
-            surface.blit(message.surface,(self.x+bubble_x, self.y+bubble_y)) 
+            surface.blit(message.surface,(self.x+bubble_x, self.y+bubble_y))
+        
+            if message.interactable:
+                message.x = bubble_x
+                message.y = bubble_y
+    
+    def on_click_return_key(self,x,y):
+        key = None
+        for message in self.all_renderable_messages():
+            if message.get_bounds().collidepoint(x,y):
+                key = message.key
+                break
+        if key is not None:
+            self.options = []
+        return key
+        
+            
