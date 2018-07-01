@@ -83,7 +83,8 @@ class Game:
         self.phone = Phone(
             self.font,
             self.sprite_sheet.get_sprite("phone"),
-            15*SCALE_FACTOR,
+            self.sprite_sheet.get_sprite("phone-keyboard"),
+            16*SCALE_FACTOR,
             BubbleConfig.from_dict(config["pc-bubbles"],self.sprite_sheet),
             BubbleConfig.from_dict(config["npc-bubbles"],self.sprite_sheet),
             BubbleConfig.from_dict(config["choice-buttons"],self.sprite_sheet),
