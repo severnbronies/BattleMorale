@@ -2,13 +2,22 @@ from constants import ASSET_DIRECTORY, SCALE_FACTOR
 import pygame
 
 class Character:
-    def __init__(self, position, head, body):
+    def __init__(self, position, head, body, body_walk_cycle):
         self.position = position
         self.old_position = position
         self.set_head(head)
         self.set_body(body)
         self.mood = 0
         self.mood_changed = False
+        self.body_walk_cycle = body_walk_cycle
+        self.body_no_walk = body
+
+    def set_walk_frame(self,index):
+        index = index % len(self.body_walk_cycle)
+        self.set_body(self.body_walk_cycle[index])
+    
+    def set_body_no_walk(self):
+        self.set_body(self.body_no_walk)
 
     def set_head(self, head):
         self.head = head

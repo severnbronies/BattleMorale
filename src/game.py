@@ -15,6 +15,7 @@ class MoveNpcAction:
         self.duration = distance/speed
         self.progress = 0.0
         self.finished = None
+        self.ani_speed = speed//2
 
     def run(self, game, timestep):
         if self.duration == 0:
@@ -28,6 +29,12 @@ class MoveNpcAction:
         x = self.start[0]*(1.0-percentage) + self.dest[0]*(percentage)
         y = self.start[1]*(1.0-percentage) + self.dest[1]*(percentage)
         game.character.move((x, y))
+        frame_index = int(self.progress*self.ani_speed)
+        game.character.set_walk_frame(frame_index)
+
+        if self.finished is not None:
+            game.character.set_body_no_walk()
+
         return self.finished
 
 
@@ -70,7 +77,17 @@ class Game:
         self.current_action = None
         self.sprite_sheet = SpriteSheet("sprites.png","sprites.yaml")
         self.background = self.sprite_sheet.get_sprite("")
-        self.character = Character((-20,0), self.sprite_sheet.get_sprite("npc_head_happier"), self.sprite_sheet.get_sprite("npc_body_idle"))
+        self.character = Character(
+            (-20,0), 
+            self.sprite_sheet.get_sprite("npc_head_happier"),
+            self.sprite_sheet.get_sprite("npc_body_idle"),
+            [
+                self.sprite_sheet.get_sprite("npc_body_walk_1"),
+                self.sprite_sheet.get_sprite("npc_body_idle"),
+                self.sprite_sheet.get_sprite("npc_body_walk_2"),
+                self.sprite_sheet.get_sprite("npc_body_idle")
+            ]
+        )
 
         self.notification_sound = pygame.mixer.Sound(os.path.join(ASSET_DIRECTORY, config["notification-sound"]))
         self.notification_sound.set_volume(0.4)
