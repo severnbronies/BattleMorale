@@ -78,6 +78,7 @@ class Game:
 
         self.mood_high = config["mood-thresholds"]["max"]
         self.mood_low = config["mood-thresholds"]["min"]
+        self.mood_sprites = config["mood-sprites"]
 
         self.font = pygame.font.Font(os.path.join(ASSET_DIRECTORY, config["font"]["file"]),config["font"]["size"]*SCALE_FACTOR)
 
@@ -158,6 +159,12 @@ class Game:
                 self.level.set_node('mood_too_high')
             elif self.character.mood <= self.mood_low:
                 self.level.set_node('mood_too_low')
+            if self.character.mood_changed:
+                for limit, sprite in self.mood_sprites.items():
+                    if self.character.mood <= limit:
+                        self.character.set_head(self.sprite_sheet.get_sprite(sprite))
+                        break
+                self.character.mood_changed = False
             self.level.pre_update(self)
         else:
             result = self.current_action.run(self, frametime)

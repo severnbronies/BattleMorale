@@ -8,6 +8,7 @@ class Character:
         self.set_head(head)
         self.set_body(body)
         self.mood = 0
+        self.mood_changed = False
 
     def set_head(self, head):
         self.head = head
@@ -21,6 +22,15 @@ class Character:
         self.old_position = self.position
         self.position = pos
         self.dirty = True
+
+    @property
+    def mood(self):
+        return self._mood
+
+    @mood.setter
+    def mood(self, value):
+        self._mood = value
+        self.mood_changed = True
 
     def old_bounds(self):
         return pygame.Rect(self.old_position, self.head.get_size())
