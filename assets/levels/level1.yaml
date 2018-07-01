@@ -65,7 +65,7 @@ nodes:
       y: 48
     - type: add_pc_choices
       choices:
-        option_3: How do you feel?
+        option_5: I believe in you. 
         option_4: See a therapist.
 
   option_2: 
