@@ -76,7 +76,7 @@ class Game:
         self.level = Tree(config["start-level"], self.global_nodes)
         self.current_action = None
         self.sprite_sheet = SpriteSheet("sprites.png","sprites.yaml")
-        self.background = self.sprite_sheet.get_sprite(os.path.join(ASSET_DIRECTORY, config["default-background"]))
+        self.background = pygame.image.load(os.path.join(ASSET_DIRECTORY, config["default-background"])).convert()
         self.character = Character(
             (-20,0), 
             self.sprite_sheet.get_sprite("npc_head_happier"),
@@ -191,9 +191,7 @@ class Game:
                 self.character.mood = 0
                 self.level.set_node('mood_too_low')
             if self.character.mood_changed:
-                print("current mood:", self.character.mood)
                 for limit, sprite in self.mood_sprites:
-                    print(sprite)
                     if self.character.mood <= limit + 0.1:
                         self.character.set_head(self.sprite_sheet.get_sprite(sprite))
                         break
