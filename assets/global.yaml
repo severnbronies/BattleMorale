@@ -3,6 +3,13 @@ mood-thresholds:
   min: -10
   max: 10
 
+mood-sprites:
+  -7: npc_head_angry
+  -3: npc_head_sadder
+  2: npc_head_idle
+  6: npc_head_happier
+  10: npc_head_nervous
+
 notification-sound: "399191__spiceprogram__drip-echo.wav"
 default-music: Comfortable Mystery 4.ogg
 
