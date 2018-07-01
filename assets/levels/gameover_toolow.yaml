@@ -2,7 +2,7 @@ nodes:
 
   start:
     - type: set_background
-      file: gameover_low.png
+      file: gameover.png
     - type: change_npc_sprite
       head: npc_head_angry
     - type: move_npc
@@ -12,4 +12,4 @@ nodes:
     - type: move_npc
       x: -180
       y: 82
-      speed: 2
+      speed: 20

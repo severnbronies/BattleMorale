@@ -2,9 +2,15 @@ nodes:
 
   start:
     - type: set_background
-      file: gameover_high.png
+      file: gameover.png
     - type: change_npc_sprite
       head: npc_head_nervous
+    - type: add_npc_message
+      text: im sorry i cant
+    - type: add_npc_message
+      text: itstoo much 
+    - type: add_npc_message
+      text: thank you for believing in me 
     - type: move_npc
       x: 152
       y: 82
@@ -12,4 +18,6 @@ nodes:
     - type: move_npc
       x: -180
       y: 82
-      speed: 3
+      speed: 30
+    - type: add_npc_message
+      text: but i cant do this
