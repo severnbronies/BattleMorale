@@ -46,7 +46,6 @@ global-nodes:
       head: npc_head_angry
     - type: move_npc
       x: -20
-      y: 82
       speed: 20
     - type: add_pc_choices
       choices:
@@ -65,7 +64,6 @@ global-nodes:
       text: thank you for believing in me 
     - type: move_npc
       x: -20
-      y: 82
       speed: 30
     - type: add_npc_message
       text: but i cant do this

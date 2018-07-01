@@ -129,7 +129,11 @@ class Game:
             self.character.set_body(self.sprite_sheet.get_sprite(body))
         self.level.post_update(None)
 
-    def move_npc(self, x, y, speed=50.0):
+    def move_npc(self, x=None, y=None, speed=50.0):
+        if x is None:
+            x = self.character.position[0]
+        if y is None:
+            y = self.character.position[1]
         if speed == 0.0:
             self.character.move((x, y))
             self.level.post_update(None)
