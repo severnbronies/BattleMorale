@@ -12,6 +12,7 @@ mood-sprites:
 
 notification-sound: "399191__spiceprogram__drip-echo.wav"
 default-music: Comfortable Mystery 4.ogg
+default-background: title.png
 
 font:
   file: "Greypixels 2.ttf"
