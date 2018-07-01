@@ -43,9 +43,28 @@ class PcChoicesAction:
         return list(self.choices.keys())[0]
 
 
+class DelayAction:
+    def __init__(self, duration):
+        self.duration = duration
+        self.progress = 0.0
+
+    def run(self, game, timestep):
+        self.progress += timestep / 1000
+
+        percentage = self.progress / self.duration
+        if percentage > 1.0:
+            return True
+        else:
+            return None
+
+
+class TextDelayAction(DelayAction):
+    def __init__(self, text):
+        super().__init__(len(text) * 0.05)
+
+
 class Game:
     def __init__(self, screen, config):
-        self.mood = 0.0
         self.screen = screen
         self.level = Tree(config["start-level"])
         self.current_action = None
@@ -67,14 +86,13 @@ class Game:
             10*SCALE_FACTOR
         )
 
-
     def add_npc_message(self, text):
         self.phone.add_npc_message(text)
-        self.level.post_update(None)
+        self.current_action = TextDelayAction(text)
 
     def add_pc_message(self, text):
         self.phone.add_pc_message(text)
-        self.level.post_update(None)
+        self.current_action = TextDelayAction(text)
 
     def add_pc_choices(self, choices):
         self.current_action = PcChoicesAction(choices)
@@ -104,8 +122,8 @@ class Game:
     def wait_click(self):
         pass
 
-    def set_background(self, name):
-        image = pygame.image.load(os.path.join(ASSET_DIRECTORY, name)).convert()
+    def set_background(self, file):
+        image = pygame.image.load(os.path.join(ASSET_DIRECTORY, file)).convert()
         self.background = pygame.transform.scale(image, self.screen.get_size())
         self.background_dirty = True
         self.level.post_update(None)
@@ -128,4 +146,4 @@ class Game:
         screen.blit(self.background, (0, 0))
         self.character.render(screen)
         self.phone.render(screen)
-    
+
