@@ -72,6 +72,9 @@ class Game:
         self.background = self.sprite_sheet.get_sprite("")
         self.character = Character((-20,0), self.sprite_sheet.get_sprite("npc_head_happier"), self.sprite_sheet.get_sprite("npc_body_idle"))
 
+        self.notification_sound = pygame.mixer.Sound(os.path.join(ASSET_DIRECTORY, config["notification-sound"]))
+        self.notification_sound.set_volume(0.4)
+
         self.mood_high = config["mood-thresholds"]["max"]
         self.mood_low = config["mood-thresholds"]["min"]
 
@@ -88,6 +91,7 @@ class Game:
 
     def add_npc_message(self, text):
         self.phone.add_npc_message(text)
+        self.notification_sound.play()
         self.current_action = TextDelayAction(text)
 
     def add_pc_message(self, text):
@@ -127,6 +131,10 @@ class Game:
         self.background = pygame.transform.scale(image, self.screen.get_size())
         self.background_dirty = True
         self.level.post_update(None)
+
+    def play_music(self, name):
+        pygame.mixer.music.load(os.path.join(ASSET_DIRECTORY, name))
+        pygame.mixer.music.play(-1)
 
     def on_event(self, event):
         if event.type == pygame.MOUSEBUTTONUP:
