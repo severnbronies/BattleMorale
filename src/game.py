@@ -17,6 +17,8 @@ class MoveNpcAction:
         self.finished = None
 
     def run(self, game, timestep):
+        if self.duration == 0:
+            return True
         self.progress += timestep/1000
 
         percentage = self.progress/self.duration
