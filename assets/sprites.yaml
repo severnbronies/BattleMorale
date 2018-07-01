@@ -45,3 +45,7 @@ npc-bubble:
 pc-bubble:
   left: 48
   top: 16
+choice-button:
+  left: 0
+  top: 64
+  height: 8

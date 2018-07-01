@@ -86,6 +86,7 @@ class Game:
             15*SCALE_FACTOR,
             BubbleConfig.from_dict(config["pc-bubbles"],self.sprite_sheet),
             BubbleConfig.from_dict(config["npc-bubbles"],self.sprite_sheet),
+            BubbleConfig.from_dict(config["choice-buttons"],self.sprite_sheet),
             10*SCALE_FACTOR
         )
 
@@ -100,6 +101,7 @@ class Game:
 
     def add_pc_choices(self, choices):
         self.current_action = PcChoicesAction(choices)
+        self.phone.add_pc_choices(choices)
 
     def change_npc_sprite(self, head=None, body=None):
         if head is not None:
@@ -139,7 +141,11 @@ class Game:
     def on_event(self, event):
         if event.type == pygame.MOUSEBUTTONUP:
             if isinstance(self.current_action, PcChoicesAction):
-                self.current_action.set_response("aaaaa")  # TODO link this with the phone rendering
+                x,y = event.pos
+                if self.phone.get_bounds().collidepoint(x,y):
+                    collision_key = self.phone.on_click_return_key(x-self.phone.x,y-self.phone.y)
+                    if collision_key is not None:
+                        self.current_action.set_response(collision_key)
 
     def on_update(self, frametime):
         if self.current_action is None:

@@ -23,3 +23,10 @@ npc-bubbles:
   margin_bottom: 4
   margin_right: 4
   sprites: "npc-bubble"
+
+choice-buttons:
+  margin_left: 4
+  margin_top: 4
+  margin_right: 4
+  margin_bottom: 4
+  sprites: "choice-button"
