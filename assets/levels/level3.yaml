@@ -51,7 +51,7 @@ nodes:
     - type: add_pc_message
       text: Yeah I'd be upset about that too.
     - type: change_npc_mood
-      delta: -6
+      delta: -3
     - type: set_node
       name: option_3
 
@@ -77,7 +77,7 @@ nodes:
     - type: add_npc_message
       text: Yay they want to meet me next week
     - type: change_npc_mood
-      delta: +3
+      delta: +2
     - type: add_npc_message
       text: Thanks for your help
     - type: move_npc
@@ -92,10 +92,7 @@ nodes:
     - type: add_npc_message
       text: Yeah maybe you're right...
     - type: change_npc_mood
-      delta: -5
-    - type: move_npc
-      x: 190
-      y: 110
+      delta: -2
     - type: add_npc_message
       text: I haven't seen them in ages though
     - type: add_pc_choices
