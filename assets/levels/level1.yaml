@@ -219,5 +219,5 @@ nodes:
       text: here i am exposing my vulerabiltieis and your just being a dick
     - type: add_npc_message
       text: asshole
-    - type: change_level
-      name: gameover_toolow.yaml
+    - type: set_node
+      name: mood_too_low
