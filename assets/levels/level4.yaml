@@ -1,0 +1,276 @@
+## Level 4
+nodes:
+  part_1:
+    - type: set_background
+      file: level-4.png
+    - type: move_npc
+      x: -16
+      y: 164
+      speed: 0
+    - type: move_npc
+      x: 16
+      y: 164
+    - type: add_npc_message
+      text: i don't belong here...
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: add_pc_choices
+      choices:
+        option_1-1: You deserve this job
+        option_1-2: You do
+        option_1-3: It's who you know, not what
+  option_1-1:
+    - type: add_pc_message
+      text: you deserve this job!
+    - type: change_npc_mood
+      delta: +3
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 32
+      y: 164
+    - type: set_node
+      name: part_2
+  option_1-2:
+    - type: add_pc_message
+      text: you're exactly where you need to be
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: set_node
+      name: part_2
+  option_1-3:
+    - type: add_pc_message
+      text: it's who you know, not what
+    - type: change_npc_mood
+      delta: -2
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: set_node
+      name: part_2
+  part_2:
+    - type: add_npc_message
+      text: how am i supposed to fit in?
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: add_pc_choices
+      choices:
+        option_2-1: Talk to coworkers
+        option_2-2: Be yourself
+        option_2-3: Keep to yourself
+  option_2-1:
+    - type: add_pc_message
+      text: talk to your coworkers!
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: change_npc_mood
+      delta: -1
+    - type: set_node
+      name: part_3
+  option_2-2:
+    - type: add_pc_message
+      text: just be yourself
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: change_npc_mood
+      delta: +1
+    - type: move_npc
+      x: 48
+      y: 164
+    - type: set_node
+      name: part_3
+  option_2-3:
+    - type: add_pc_message
+      text: keep to yourself
+    - type: change_npc_sprite
+      head: npc_head_angry
+    - type: change_npc_mood
+      delta: -2
+    - type: set_node
+      name: part_3
+  part_3:
+    - type: add_npc_message
+      text: i have no idea what i'm doing
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: add_pc_choices
+      choices:
+        option_3-1: Google it
+        option_3-2: They will understand
+        option_3-3: Just give up
+  option_3-1:
+    - type: add_pc_message
+      text: you can just google it
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: move_npc
+      x: 50
+      y: 164
+    - type: set_node
+      name: part_4
+  option_3-2:
+    - type: add_pc_message
+      text: they will understand
+    - type: change_npc_mood
+      delta: +2
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 75
+      y: 164
+    - type: set_node
+      name: part_4
+  option_3-3:
+    - type: add_pc_message
+      text: maybe you should give up
+    - type: change_npc_mood
+      delta: -3
+    - type: change_npc_sprite
+      head: npc_head_angry
+    - type: move_npc
+      x: 40
+      y: 164
+    - type: set_node
+      name: part_4
+  part_4:
+    - type: add_npc_message
+      text: i should just quit
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: add_pc_choices
+      choices:
+        option_4-1: But you worked so hard...
+        option_4-2: Yeah you should
+        option_4-3: Don't give up
+  option_4-1:
+    - type: add_pc_message
+      text: but you worked so hard...
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: move_npc
+      x: 100
+      y: 164
+    - type: set_node
+      name: part_5
+  option_4-2:
+    - type: add_pc_message
+      text: yeah, you probably should
+    - type: change_npc_mood
+      delta: -3
+    - type: change_npc_sprite
+      head: npc_head_angry
+    - type: set_node
+      name: part_5
+  option_4-3:
+    - type: add_pc_message
+      text: don't give up now!
+    - type: change_npc_mood
+      delta: +2
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 100
+      y: 164
+    - type: set_node
+      name: part_5
+  part_5:
+    - type: add_npc_message
+      text: I can't ask for that much
+    - type: change_npc_sprite
+      head: npc_head_nervous
+    - type: add_pc_choices
+      choices:
+        option_5-1: You're worth more
+        option_5-2: You're lucky to get what you have
+        option_5-3: It's worth asking
+  option_5-1:
+    - type: add_pc_message
+      text: you're worth even more than that
+    - type: change_npc_mood
+      delta: +3
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 125
+      y: 164
+    - type: set_node
+      name: part_6
+  option_5-2:
+    - type: add_pc_message
+      text: you're lucky to get what you have
+    - type: change_npc_mood
+      delta: -2
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: set_node
+      name: part_6
+  option_5-3:
+    - type: add_pc_message
+      text: it's worth asking
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: move_npc
+      x: 125
+      y: 164
+    - type: set_node
+      name: part_6
+  part_6:
+    - type: add_npc_message
+      text: will this work every be fulfilling?
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: add_pc_choices
+      choices:
+        option_6-1: stick at it
+        option_6-2: work is work
+        option_6-3: stay true to yourself
+        option_6-4: probably not
+  option_6-1:
+    - type: add_pc_message
+      text: stick at it
+    - type: change_npc_mood
+      delta: +1
+    - type: change_npc_sprite
+      head: npc_head_idle
+    - type: set_node
+      name: finish
+  option_6-2:
+    - type: add_pc_message
+      text: work is work, right?
+    - type: change_npc_mood
+      delta: -1
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: set_node
+      name: finish
+  option_6-3:
+    - type: add_pc_message
+      text: as long as you stay true to yourself <3
+    - type: change_npc_mood
+      delta: +3
+    - type: change_npc_sprite
+      head: npc_head_happier
+    - type: set_node
+      name: finish
+  option_6-4:
+    - type: add_pc_message
+      text: probably not, work rarely is...
+    - type: change_npc_mood
+      delta: -2
+    - type: change_npc_sprite
+      head: npc_head_sadder
+    - type: set_node
+      name: finish
+  finish:
+    - type: move_npc
+      x: 250
+      y: 164
+    - type: change_level
+      name: level5.yaml
