@@ -189,9 +189,13 @@ class Phone:
 
     def add_npc_message(self, text):
         self.messages.append(self.NpcMessage(text))
+        if len(self.messages) > 20:
+            self.messages = self.messages[-20:]
 
     def add_pc_message(self, text):
         self.messages.append(self.PcMessage(text))
+        if len(self.messages) > 20:
+            self.messages = self.messages[-20:]
 
     def add_pc_choices(self, choices):
         self.options = [self.Choice(text,key=key) for (key,text) in choices.items()]
@@ -200,7 +204,15 @@ class Phone:
         bubble_width, bubble_height = message.surface.get_size()
         bubble_y -= bubble_height + SCALE_FACTOR #TODO CONST: bubble vertical gap
         if bubble_y < self.screen_top:
-            return (None,None)
+            offset_y = self.screen_top - bubble_y
+            visible_height = bubble_height-offset_y
+            if visible_height <= 0:
+                return None,None
+            area = (0,offset_y,bubble_width,visible_height)
+            bubble_y = self.screen_top
+        else:
+            area = None
+
         if message.align == "RIGHT":
             bubble_x = width - self.bubble_margin - bubble_width
         elif message.align == "CENTER":
@@ -208,7 +220,7 @@ class Phone:
         else: #default LEFT
             bubble_x = self.bubble_margin
         
-        surface.blit(message.surface,(self.x+bubble_x, self.y+bubble_y))   
+        surface.blit(message.surface,(self.x+bubble_x, self.y+bubble_y),area)   
         return bubble_x, bubble_y    
 
     def render(self, surface):
