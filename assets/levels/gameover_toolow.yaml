@@ -1,0 +1,15 @@
+nodes:
+
+  start:
+    - type: set_background
+      file: gameover_low.png
+    - type: change_npc_sprite
+      head: npc_head_angry
+    - type: move_npc
+      x: 152
+      y: 82
+      speed: 0
+    - type: move_npc
+      x: -180
+      y: 82
+      speed: 2
