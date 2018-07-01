@@ -127,7 +127,7 @@ class ChoiceMixin:
         return pygame.Rect(self.x,self.y,*self.surface.get_size())
 
 class Phone:
-    def __init__(self,font,phone_sprite,bubbles_bottom,pc_bubble_config,npc_bubble_config,choice_config,bubble_margin):
+    def __init__(self,font,phone_sprite,keyboard_back_sprite,bubbles_bottom,pc_bubble_config,npc_bubble_config,choice_config,bubble_margin):
         max_bubble_width = phone_sprite.get_size()[0]-bubble_margin*2
 
         self.PcMessage = Message.factory("PcMessage",
@@ -167,6 +167,7 @@ class Phone:
         )
 
         self.sprite = phone_sprite
+        self.keyboard_back_sprite = keyboard_back_sprite
         self.bubbles_bottom = bubbles_bottom
         self.bubble_margin = bubble_margin
 
@@ -190,37 +191,48 @@ class Phone:
     def add_pc_choices(self, choices):
         self.options = [self.Choice(text,key=key) for (key,text) in choices.items()]
 
-    def all_renderable_messages(self):
-        yield from self.options[::-1]
-        yield from self.messages[::-1]
+    def render_message(self, message, surface, width, height, bubble_y):
+        bubble_width, bubble_height = message.surface.get_size()
+        bubble_y -= bubble_height + SCALE_FACTOR #TODO CONST: bubble vertical gap
+        if bubble_y < 0:
+            return (None,None)
+        if message.align == "RIGHT":
+            bubble_x = width - self.bubble_margin - bubble_width
+        elif message.align == "CENTER":
+            bubble_x = (width - bubble_width)/2
+        else: #default LEFT
+            bubble_x = self.bubble_margin
+        
+        surface.blit(message.surface,(self.x+bubble_x, self.y+bubble_y))   
+        return bubble_x, bubble_y    
 
     def render(self, surface):
         if not self.dirty:
             return
         surface.blit(self.sprite,(self.x,self.y))
-        width,height = self.sprite.get_size()
+        width, height = self.sprite.get_size()
         bubble_y = height - self.bubbles_bottom
 
-        for message in self.all_renderable_messages():
-            bubble_width, bubble_height = message.surface.get_size()
-            bubble_y -= bubble_height
-            if bubble_y < 0:
-                break
-            if message.align == "RIGHT":
-                bubble_x = width - self.bubble_margin - bubble_width
-            elif message.align == "CENTER":
-                bubble_x = (width - bubble_width)/2
-            else: #default LEFT
-                bubble_x = self.bubble_margin
-            surface.blit(message.surface,(self.x+bubble_x, self.y+bubble_y))
-        
-            if message.interactable:
-                message.x = bubble_x
-                message.y = bubble_y
+        keyboard_height = sum(m.surface.get_size()[1]+SCALE_FACTOR for m in self.options)
+        if keyboard_height > 0:
+            keyboard_height += SCALE_FACTOR*3
+            keyboard_width = self.keyboard_back_sprite.get_size()[0]
+            keyboard_y = height - self.bubbles_bottom - keyboard_height
+            surface.blit(self.keyboard_back_sprite, (8*SCALE_FACTOR,keyboard_y), (0,0,keyboard_width,keyboard_height))
+
+        for message in self.options[::-1]:
+            bubble_x,bubble_y = self.render_message(message,surface,width,height,bubble_y)
+            message.x = bubble_x
+            message.y = bubble_y
+
+        bubble_y -= SCALE_FACTOR*5
+
+        for message in self.messages[::-1]:
+            bubble_x,bubble_y = self.render_message(message,surface,width,height,bubble_y)
     
     def on_click_return_key(self,x,y):
         key = None
-        for message in self.all_renderable_messages():
+        for message in self.options:
             if message.get_bounds().collidepoint(x,y):
                 key = message.key
                 break

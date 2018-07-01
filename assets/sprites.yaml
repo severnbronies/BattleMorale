@@ -39,6 +39,11 @@ phone:
   left: 80
   width: 96
   height: 176
+phone-keyboard:
+  top: 110
+  left: 0
+  width: 80
+  height: 60
 npc-bubble:
   left: 0
   top: 16
