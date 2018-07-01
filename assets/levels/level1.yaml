@@ -10,7 +10,7 @@ nodes:
     - type: move_npc
       x: 16
       y: 80
-      speed: 10
+      speed: 25
     - type: add_npc_message
       text: my minds kinda a mess rn, can you help me out?
     - type: add_pc_choices
@@ -76,7 +76,7 @@ nodes:
     - type: move_npc
       x: 6
       y: 80
-      speed: .5
+      speed: 10
     - type: change_npc_sprite
       head: npc_head_angry
     - type: add_npc_message
@@ -88,7 +88,7 @@ nodes:
     - type: move_npc
       x: 16
       y: 80
-      speed: .5
+      speed: 10
     - type: add_npc_message
       text: >
         i cant think straight.

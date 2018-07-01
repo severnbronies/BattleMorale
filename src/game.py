@@ -153,7 +153,6 @@ class Game:
 
     def set_node(self, name):
         self.level.set_node(name)
-        self.level.post_update(None)
 
     def set_background(self, file):
         image = pygame.image.load(os.path.join(ASSET_DIRECTORY, file)).convert()
