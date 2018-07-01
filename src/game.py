@@ -125,6 +125,8 @@ class Game:
     def change_npc_sprite(self, head=None, body=None):
         if head is not None:
             self.character.set_head(self.sprite_sheet.get_sprite(head))
+            if head == "npc_head_idle":
+                self.character.mood_changed = True
         if body is not None:
             self.character.set_body(self.sprite_sheet.get_sprite(body))
         self.level.post_update(None)
