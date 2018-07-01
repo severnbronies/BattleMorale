@@ -66,7 +66,8 @@ class TextDelayAction(DelayAction):
 class Game:
     def __init__(self, screen, config):
         self.screen = screen
-        self.level = Tree(config["start-level"])
+        self.global_nodes = config["global-nodes"]
+        self.level = Tree(config["start-level"], self.global_nodes)
         self.current_action = None
         self.sprite_sheet = SpriteSheet("sprites.png","sprites.yaml")
         self.background = self.sprite_sheet.get_sprite("")
@@ -124,7 +125,7 @@ class Game:
 
     def change_level(self, name):
         self.character.move((-20, 0))
-        self.level = Tree(name)
+        self.level = Tree(name, self.global_nodes)
 
     def wait_click(self):
         pass
@@ -153,6 +154,10 @@ class Game:
 
     def on_update(self, frametime):
         if self.current_action is None:
+            if self.character.mood >= self.mood_high:
+                self.level.set_node('mood_too_high')
+            elif self.character.mood <= self.mood_low:
+                self.level.set_node('mood_too_low')
             self.level.pre_update(self)
         else:
             result = self.current_action.run(self, frametime)

@@ -2,10 +2,13 @@ from utils import get_ordered_yaml
 
 
 class Tree:
-    def __init__(self, filename):
+    def __init__(self, filename, global_nodes):
         data = get_ordered_yaml("levels", filename)
-        self.nodes = data["nodes"]
+        self.nodes = data["nodes"]        
         self.current_node_name = list(self.nodes.keys())[0]
+        global_nodes = global_nodes.copy()
+        global_nodes.update(self.nodes)
+        self.nodes = global_nodes
         self.current_action_index = 0
 
     def pre_update(self, game):
@@ -31,3 +34,7 @@ class Tree:
             self.current_action_index = 0
         else:
             self.current_action_index += 1
+
+    def set_node(self, name):
+        self.current_node_name = state
+        self.current_action_index = 0
