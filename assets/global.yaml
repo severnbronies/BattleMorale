@@ -1,4 +1,4 @@
-start-level: "example.yaml"
+start-level: "level0.yaml"
 mood-thresholds:
   min: -10
   max: 10

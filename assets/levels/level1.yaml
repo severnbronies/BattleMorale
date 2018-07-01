@@ -10,7 +10,7 @@ nodes:
     - type: move_npc
       x: 16
       y: 80
-      speed: 1
+      speed: 10
     - type: add_npc_message
       text: my minds kinda a mess rn, can you help me out?
     - type: add_pc_choices
@@ -22,7 +22,7 @@ nodes:
     - type: add_pc_message
       text: Do you want to talk about it?
     - type: change_npc_mood
-      detla: +3
+      delta: +3
     - type: move_npc
       x: 48
       y: 80
@@ -44,7 +44,7 @@ nodes:
     - type: add_pc_message
       text: What's on your mind? 
     - type: change_npc_mood
-      detla: +2
+      delta: +2
     - type: move_npc
       x: 64
       y: 64
@@ -72,7 +72,7 @@ nodes:
     - type: add_pc_message
       text: Try drinking some water. Dehydration will do that. 
     - type: change_npc_mood
-      detla: -3
+      delta: -3
     - type: move_npc
       x: 6
       y: 80
@@ -104,7 +104,7 @@ nodes:
     - type: add_pc_message
       text: I'm sure a professional could help you work this out. 
     - type: change_npc_mood
-      detla: -1
+      delta: -1
     - type: change_npc_sprite
       head: npc_head_sadder
     - type: add_npc_message
@@ -120,7 +120,7 @@ nodes:
     - type: add_pc_message
       text: I can help you find someone? 
     - type: change_npc_mood
-      detla: +2
+      delta: +2
     - type: add_npc_message
       text: thank you <3
     - type: move_npc
@@ -151,7 +151,7 @@ nodes:
     - type: add_npc_message
       text: thanks...
     - type: change_npc_mood
-      detla: -1
+      delta: -1
     - type: add_npc_message
       text: one more thing...
     - type: add_pc_choices
