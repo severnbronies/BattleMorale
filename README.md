@@ -1,5 +1,7 @@
 # Battle Morale
-A video game about overcoming adversity by Alice Casey, Kimberly Grey, Kit Manners, Sam P, and Watson.
+A video game about raising spirits by Alice Casey ([@Fir3Sparkle](https://twitter.com/fir3sparkle)), Kimberly Grey ([@kimpegasus](https://twitter.com/kimpegasus)), Kit Manners ([@gigosaurus](https://twitter.com/gigosaurus)), Sam P  ([@SamP20](https://twitter.com/SamP20)), and Watson ([@Ripp_](https://twitter.com/ripp_)).
+
+Made at [Bristol Pride Game Jam 2018](https://bristolepridegamejam.itch.io).
 
 ## Characters
 
